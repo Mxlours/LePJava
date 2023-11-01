@@ -8,13 +8,13 @@ public class TestCellSimulator {
         // Création d'une instance de GUISimulator
         GUISimulator gui = new GUISimulator(500, 500, Color.BLACK);
         Cell cell = new Cell( 100, 100);
-        cell.setBoolean_coord(true, 50, 50);
-        cell.setBoolean_coord(true, 52, 51);
-        cell.setBoolean_coord(true, 50, 52);
-        cell.setBoolean_coord(true, 49, 52);
-        cell.setBoolean_coord(true, 53, 52);
-        cell.setBoolean_coord(true, 54, 52);
-        cell.setBoolean_coord(true, 55, 52);
+        cell.setBoolean_coord(1, 50, 50);
+        cell.setBoolean_coord(1, 52, 51);
+        cell.setBoolean_coord(1, 50, 52);
+        cell.setBoolean_coord(1, 49, 52);
+        cell.setBoolean_coord(1, 53, 52);
+        cell.setBoolean_coord(1, 54, 52);
+        cell.setBoolean_coord(1, 55, 52);
 
         cell.InitConfigFirst();
         // Création d'une instance de CellSimulator
