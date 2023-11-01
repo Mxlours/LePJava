@@ -19,13 +19,37 @@
 #   -sourcepath : répertoire dans lequel sont cherchés les .java
 #   -classpath : répertoire dans lequel sont cherchées les classes compilées (.class et .jar)
 
-all: runTestInvader 
+all: runTestInvader runTestBall runTestBallSimulator runTestCell runTestCellSimulator
 
 compileTestInvader:
 	javac -d bin -classpath lib/gui.jar src/TestInvader.java
 
 runTestInvader: compileTestInvader
 	java -classpath bin:lib/gui.jar TestInvader
+
+compileTestBall:
+	javac -d bin -classpath lib/gui.jar src/TestBalls.java src/Balls.java
+
+runTestBall: compileTestBall
+	java -classpath bin:lib/gui.jar TestBalls
+
+compileTestBallSimulator:
+	javac -d bin -classpath lib/gui.jar src/TestBallsSimulator.java src/Balls.java src/BallsSimulator.java
+
+runTestBallSimulator: compileTestBallSimulator
+	java -classpath bin:lib/gui.jar TestBallsSimulator
+
+compileTestCell:
+	javac -d bin -classpath lib/gui.jar src/TestCell.java src/Cell.java
+
+runTestCell: compileTestCell
+	java -classpath bin:lib/gui.jar TestCell
+
+compileTestCellSimulator:
+	javac -d bin -classpath lib/gui.jar src/TestCellSimulator.java src/Cell.java src/CellSimulator.java
+
+runTestCellSimulator: compileTestCellSimulator
+	java -classpath bin:lib/gui.jar TestCellSimulator
 
 clean:
 	rm -rf bin/
