@@ -20,7 +20,7 @@ public class CellSimulator implements Simulable
     @Override
     public void next() {
         gui.reset();
-        cells.setNewetape();
+        cells.setnewEtapeConway();
 
         setGraphicCell();
     }
@@ -29,10 +29,10 @@ public class CellSimulator implements Simulable
         for (int i = 0; i <cells.getSize_y(); i++){
             for (int j = 0; j < cells.getSize_x(); j++){
                 if (cells.getIsAlive()[cells.getSize_y() * i + j] == 1) {
-                    gui.addGraphicalElement(new Rectangle(j * 5, i * 5, Color.decode("#1f77b4"), Color.decode("#1f77b4"), 5));
+                    gui.addGraphicalElement(new Rectangle(j * 20, i * 20, Color.decode("#1f77b4"), Color.decode("#1f77b4"), 20));
                 }
                 else{
-                    gui.addGraphicalElement(new Rectangle(j * 5, i * 5, Color.decode("#ffffff"), Color.decode("#ffffff"), 5));
+                    gui.addGraphicalElement(new Rectangle(j * 20, i * 20, Color.decode("#ffffff"), Color.decode("#ffffff"), 20));
                 }
             }
         }

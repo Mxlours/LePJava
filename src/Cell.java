@@ -1,14 +1,14 @@
 import java.awt.Point;
 public class Cell {
-    private Point[] cells;
+    protected Point[] cells;
 
-    private int[] isAlive;
+    protected int[] isAlive;
 
-    private int[] alive_before;
+    protected int[] alive_before;
 
-    private int[] first_config;
-    private int size_x;
-    private int size_y;
+    protected int[] first_config;
+    protected int size_x;
+    protected int size_y;
 
     public Cell(int size_x, int size_y) {
 
@@ -86,7 +86,7 @@ public class Cell {
     // au dessus je définie les fonctions basiques que devront utiliser l'uilisateur pour un cell
 
     // maintenant définissons une méthode qui va calculer le nombre de voisins
-    public void setNewetape(){
+    public void setnewEtapeConway(){
         for (int i = 0; i < getlength(); i++){
             if ( (alive_before[i] == 0) && (countAliveNeighbors(getCellule(i))==3)){
                 setBoolean(1, i);
@@ -112,11 +112,12 @@ public class Cell {
         return aliveNeighbors;
     }
 
-    private boolean isNeighbor(Point cellule1, Point cellule2) {
-        int dx = Math.abs((cellule1.x - cellule2.x)%(size_x - 1));
-        int dy = Math.abs((cellule1.y - cellule2.y)%(size_y - 1));
-
-        return (dx == 1 && dy <= 1) || (dy == 1 && dx <= 1);
+    protected boolean isNeighbor(Point cellule1, Point cellule2) {
+        int dx = Math.abs((cellule1.x - cellule2.x))%(size_x-1);
+        int dy = Math.abs((cellule1.y - cellule2.y))%(size_y-1);
+        boolean xNeighbor = (dx == 1) || (dx == size_x-1);
+        boolean yNeighbor = (dy == 1) || (dy == size_y-1);
+        return (xNeighbor && dy <= 1) || (yNeighbor && dx <= 1);
     }
 
 
@@ -129,5 +130,6 @@ public class Cell {
         return rt;
     }
 
+    // On va devoir implémenter une fonction pour le calcul de notre cell, donc ce que je vais faire c'est extend ma classe cell, avec un calcul pour conway, et un calcul pour IMMIGRATION !
 
 }

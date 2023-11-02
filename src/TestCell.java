@@ -12,9 +12,9 @@ public class TestCell {
         cell.InitConfigFirst();
 
         System.out.println(" notre configuration de base pour le jeu de conway:\n" + cell.toString());
-        cell.setNewetape();
+        cell.setnewEtapeConway();
         System.out.println(" notre configuration de base pour le jeu de conway:\n" + cell.toString());
-        cell.setNewetape();
+        cell.setnewEtapeConway();
         System.out.println(" notre configuration de base pour le jeu de conway:\n" + cell.toString());
         cell.Init_cells();
         System.out.println(" notre configuration de base pour le jeu de conway:\n" + cell.toString());

@@ -6,15 +6,15 @@ import java.awt.Color;
 public class TestCellSimulator {
     public static void main(String[] args) {
         // Création d'une instance de GUISimulator
-        GUISimulator gui = new GUISimulator(500, 500, Color.BLACK);
+        GUISimulator gui = new GUISimulator(500, 500, Color.GREEN);
         Cell cell = new Cell( 100, 100);
-        cell.setBoolean_coord(1, 50, 50);
-        cell.setBoolean_coord(1, 52, 51);
-        cell.setBoolean_coord(1, 50, 52);
-        cell.setBoolean_coord(1, 49, 52);
-        cell.setBoolean_coord(1, 53, 52);
-        cell.setBoolean_coord(1, 54, 52);
-        cell.setBoolean_coord(1, 55, 52);
+        cell.setBoolean_coord(1, 30, 30);
+        cell.setBoolean_coord(1, 32, 31);
+        cell.setBoolean_coord(1, 30, 32);
+        cell.setBoolean_coord(1, 29, 32);
+        cell.setBoolean_coord(1, 33, 32);
+        cell.setBoolean_coord(1, 34, 32);
+        cell.setBoolean_coord(1, 35, 32);
 
         cell.InitConfigFirst();
         // Création d'une instance de CellSimulator
