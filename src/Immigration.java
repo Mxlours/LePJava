@@ -40,7 +40,7 @@ public class Immigration extends Cell {
         if (bool >= nb_etats) {
             throw new IllegalArgumentException("l'état voulu n'existe pas (n-1 max)");
         }
-        isAlive[size_y*coord_y + coord_x] = bool;
-        alive_before[size_y*coord_y + coord_x] = bool;
+        isAlive[size_x*coord_y + coord_x] = bool;
+        alive_before[size_x*coord_y + coord_x] = bool;
     }
 }

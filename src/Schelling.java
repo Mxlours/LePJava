@@ -15,6 +15,9 @@ public class Schelling extends Cell{
     }
 
     public HashMap<Point, Boolean> getDict() { return dictPointToLibre; }
+    public int getNb_etats() {
+        return nb_etats;
+    }
 
     public void initDict(HashMap<Point, Boolean> dictPointToLibre){
         int sizeX = getSize_x();
@@ -28,7 +31,7 @@ public class Schelling extends Cell{
     }
 
     private int countOtherNeighborsSchelling(Point cellule, int etat_cellule) {
-        if(etat_cellule == 999){
+        if(etat_cellule == 0){
             // si c'est inhabité on fais rien
             return 0;
         }
@@ -58,6 +61,8 @@ public class Schelling extends Cell{
     public void setFree(Point Cellule){
         // on libère la place
         this.dictPointToLibre.put(Cellule, true);
+        // mets la valeur 999 pour indiqué que y'a personne ici
+        setBoolean(0, Cellule.y*getSize_x() + Cellule.x);
     }
 
     public void SetNewDestination(Point Cellule){
@@ -68,9 +73,32 @@ public class Schelling extends Cell{
                 // faut mettre dans alive le fait qu'elle à changer de place
                 int etat_cellule = alive_before[Cellule.y*getSize_x() + Cellule.x];
                 setBoolean(etat_cellule, i);
-                // mets la valeur 999 pour indiqué que y'a personne ici
-                setBoolean(999, Cellule.y*getSize_x() + Cellule.x);
             }
         }
     }
+
+    @Override
+    public void Init_cells(){
+        this.isAlive = new int[size_x*size_y];
+        this.alive_before = new int[size_x*size_y];
+        for (int i = 0; i <size_y; i++){
+            for (int j = 0; j < size_x; j++){
+                this.isAlive[size_x*i + j]= this.first_config[size_x*i + j];
+                this.alive_before[size_x*i + j]= this.first_config[size_x*i + j];
+                Point current_point = new Point(j, i);
+                this.dictPointToLibre.put(current_point, false);
+            }
+        }
+    }
+
+    public void setBoolean_coord_Sche(int bool, int coord_x, int coord_y){
+        if (bool >= nb_etats) {
+            throw new IllegalArgumentException("l'état voulu n'existe pas (n-1 max)");
+        }
+        isAlive[size_x*coord_y + coord_x] = bool;
+        alive_before[size_x*coord_y + coord_x] = bool;
+        Point current_point = new Point(coord_x, coord_y);
+        this.dictPointToLibre.put(current_point, false);
+    }
+
 }

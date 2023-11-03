@@ -28,7 +28,7 @@ public class CellSimulator implements Simulable
     public void setGraphicCell() {
         for (int i = 0; i <cells.getSize_y(); i++){
             for (int j = 0; j < cells.getSize_x(); j++){
-                if (cells.getIsAlive()[cells.getSize_y() * i + j] == 1) {
+                if (cells.getIsAlive()[cells.getSize_x() * i + j] == 1) {
                     gui.addGraphicalElement(new Rectangle(j * 20, i * 20, Color.decode("#1f77b4"), Color.decode("#1f77b4"), 20));
                 }
                 else{

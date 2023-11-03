@@ -22,9 +22,9 @@ public class Cell {
         }
         for (int i = 0; i <size_y; i++){
             for (int j = 0; j < size_x; j++){
-                this.cells[size_y*i + j] = new Point(i, j);
-                this.isAlive[size_y*i + j] = 0;
-                this.alive_before[size_y*i + j]= 0;
+                this.cells[size_x*i + j] = new Point(j, i);
+                this.isAlive[size_x*i + j] = 0;
+                this.alive_before[size_x*i + j]= 0;
             }
         }
     }
@@ -41,7 +41,7 @@ public class Cell {
         this.first_config = new int[size_x*size_y];
         for (int i = 0; i <size_y; i++){
             for (int j = 0; j < size_x; j++){
-                this.first_config[size_y*i + j]= this.isAlive[size_y*i + j];
+                this.first_config[size_x*i + j]= this.isAlive[size_x*i + j];
             }
         }
     }
@@ -50,10 +50,8 @@ public class Cell {
         this.alive_before = new int[size_x*size_y];
         for (int i = 0; i <size_y; i++){
             for (int j = 0; j < size_x; j++){
-                this.isAlive[size_y*i + j]= this.first_config[size_y*i + j];
-                this.alive_before[size_y*i + j]= this.first_config[size_y*i + j];
-
-
+                this.isAlive[size_x*i + j]= this.first_config[size_x*i + j];
+                this.alive_before[size_x*i + j]= this.first_config[size_x*i + j];
             }
         }
     }
@@ -74,8 +72,8 @@ public class Cell {
     }
 
     public void setBoolean_coord(int bool, int coord_x, int coord_y){
-        isAlive[size_y*coord_y + coord_x] = bool;
-        alive_before[size_y*coord_y + coord_x] = bool;
+        isAlive[size_x*coord_y + coord_x] = bool;
+        alive_before[size_x*coord_y + coord_x] = bool;
     }
     public void setBoolean(int bool, int i){
         isAlive[i] = bool;
@@ -112,10 +110,10 @@ public class Cell {
     }
 
     protected boolean isNeighbor(Point cellule1, Point cellule2) {
-        int dx = Math.abs((cellule1.x - cellule2.x))%(size_x-1);
-        int dy = Math.abs((cellule1.y - cellule2.y))%(size_y-1);
-        boolean xNeighbor = (dx == 1) || (dx == size_x-1);
-        boolean yNeighbor = (dy == 1) || (dy == size_y-1);
+        int dx = Math.abs((cellule1.x - cellule2.x));
+        int dy = Math.abs((cellule1.y - cellule2.y));
+        boolean xNeighbor = (dx == 1);
+        boolean yNeighbor = (dy == 1);
         return (xNeighbor && dy <= 1) || (yNeighbor && dx <= 1);
     }
 

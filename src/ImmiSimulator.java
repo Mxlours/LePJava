@@ -17,7 +17,7 @@ public class ImmiSimulator implements Simulable{
         int pas_couleur = 255/ cells.getNb_etats();
         for (int i = 0; i <cells.getSize_y(); i++){
             for (int j = 0; j < cells.getSize_x(); j++){
-                    int couleur_rect = pas_couleur * cells.getIsAlive()[cells.getSize_y() * i + j];
+                    int couleur_rect = pas_couleur * cells.getIsAlive()[cells.getSize_x() * i + j];
                     String color = "#" + Integer.toHexString(255 - couleur_rect) + Integer.toHexString(255 -couleur_rect) + Integer.toHexString(255 - couleur_rect);
                     gui.addGraphicalElement(new Rectangle(200 + j * 50, 200 + i * 50, Color.decode(color), Color.decode(color), 50));
             }

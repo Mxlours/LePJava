@@ -10,7 +10,7 @@ public class TestImmiSimulator {
     public static void main(String[] args) {
         // Création d'une instance de GUISimulator
         GUISimulator gui = new GUISimulator(500, 500, Color.BLUE);
-        Immigration cell = new Immigration( 5, 5, 4);
+        Immigration cell = new Immigration( 5, 6, 4);
         cell.setBoolean_coord_Immi(3, 0, 0);
         cell.setBoolean_coord_Immi(1, 2, 0);
         cell.setBoolean_coord_Immi(1, 3, 0);
