@@ -1,7 +1,7 @@
 import java.awt.*;
 
 public class Immigration extends Cell {
-    int nb_etats;
+    private int nb_etats;
     // On condisère que nos états vont de 0 à etats-1 !!!!!!!!
     public Immigration(int size_x, int size_y, int nb_etats){
         super(size_x, size_y);
@@ -38,7 +38,7 @@ public class Immigration extends Cell {
 
     public void setBoolean_coord_Immi(int bool, int coord_x, int coord_y){
         if (bool >= nb_etats) {
-            throw new IllegalArgumentException("les longueurs des deux tableaux doivent être identiques ! ");
+            throw new IllegalArgumentException("l'état voulu n'existe pas (n-1 max)");
         }
         isAlive[size_y*coord_y + coord_x] = bool;
         alive_before[size_y*coord_y + coord_x] = bool;

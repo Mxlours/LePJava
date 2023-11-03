@@ -74,7 +74,6 @@ public class Cell {
     }
 
     public void setBoolean_coord(int bool, int coord_x, int coord_y){
-
         isAlive[size_y*coord_y + coord_x] = bool;
         alive_before[size_y*coord_y + coord_x] = bool;
     }
