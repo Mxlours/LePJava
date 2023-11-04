@@ -27,11 +27,16 @@ public class TestShellingSimulator {
         cell.setBoolean_coord_Sche(1, 1, 3);
         cell.setBoolean_coord_Sche(2, 2, 3);
         cell.setBoolean_coord_Sche(2, 3, 3);
-        cell.setBoolean_coord_Sche(2, 4, 3);
+        cell.setBoolean_coord_Sche(4, 4, 3);
         cell.setBoolean_coord_Sche(3, 1, 4);
         cell.setBoolean_coord_Sche(2, 2, 4);
         cell.setBoolean_coord_Sche(2, 3, 4);
         cell.setBoolean_coord_Sche(1, 4, 4);
+        cell.setBoolean_coord_Sche(4, 0, 5);
+        cell.setBoolean_coord_Sche(4, 1, 5);
+        cell.setBoolean_coord_Sche(3, 2, 5);
+
+        cell.setBoolean_coord_Sche(4, 4, 5);
 
         cell.InitConfigFirst();
         // Création d'une instance de CellSimulator

@@ -37,7 +37,7 @@ public class Schelling extends Cell{
         }
         int voisinsupp = 0;
         for (int i = 0; i < getlength(); i++) {
-            if (super.isNeighbor(cellule, super.cells[i]) && (super.alive_before[i] != etat_cellule)){
+            if (super.isNeighbor(cellule, super.cells[i]) && (super.alive_before[i] != etat_cellule) && (super.alive_before[i] != 0)){
                 voisinsupp++;
             }
         }
@@ -48,8 +48,8 @@ public class Schelling extends Cell{
         for (int i = 0; i < getlength(); i++){
             int etat_cellule = alive_before[i];
             if ( countOtherNeighborsSchelling(getCellule(i), etat_cellule)>this.ndrDeVoisinDiffPourChanger) {
-                setFree(getCellule(i));
                 SetNewDestination(getCellule(i));
+                setFree(getCellule(i));
             }
         }
         alive_before = new int[getlength()];
@@ -73,6 +73,7 @@ public class Schelling extends Cell{
                 // faut mettre dans alive le fait qu'elle à changer de place
                 int etat_cellule = alive_before[Cellule.y*getSize_x() + Cellule.x];
                 setBoolean(etat_cellule, i);
+                break;
             }
         }
     }
@@ -83,16 +84,19 @@ public class Schelling extends Cell{
         this.alive_before = new int[size_x*size_y];
         for (int i = 0; i <size_y; i++){
             for (int j = 0; j < size_x; j++){
-                this.isAlive[size_x*i + j]= this.first_config[size_x*i + j];
-                this.alive_before[size_x*i + j]= this.first_config[size_x*i + j];
-                Point current_point = new Point(j, i);
-                this.dictPointToLibre.put(current_point, false);
+                int first_conf = this.first_config[size_x*i + j];
+                this.isAlive[size_x*i + j]= first_conf;
+                this.alive_before[size_x*i + j]= first_conf;
+                if(first_conf != 0){
+                    Point current_point = new Point(j, i);
+                    this.dictPointToLibre.put(current_point, false);
+                }
             }
         }
     }
 
     public void setBoolean_coord_Sche(int bool, int coord_x, int coord_y){
-        if (bool >= nb_etats) {
+        if (bool >= nb_etats + 1) {
             throw new IllegalArgumentException("l'état voulu n'existe pas (n-1 max)");
         }
         isAlive[size_x*coord_y + coord_x] = bool;
