@@ -8,8 +8,9 @@ public class BoidsSimulator implements Simulable
     private GUISimulator gui;
 
     private void set_Boid(Boids boid, Color couleur){
-        int[] abs = {boid.getPosition()[0], boid.getPosition()[0] - 10, boid.getPosition()[0] + 10};
-        int[] ord = {boid.getPosition()[1], boid.getPosition()[1] + 20, boid.getPosition()[1] + 20};
+        // de base on pointe vers la droite c'est plus logique pour les calculs de trigo
+        int[] abs = {boid.getPosition()[0], boid.getPosition()[0] - 20, boid.getPosition()[0] - 20};
+        int[] ord = {boid.getPosition()[1], boid.getPosition()[1] - 10, boid.getPosition()[1] + 10};
         TriangleElement triangleElement= new TriangleElement(abs, ord, couleur, boid.getOrientation());
         gui.addGraphicalElement(triangleElement);
         //gui.addGraphicalElement(new Rectangle(20, 20, Color.decode("#1f77b4"), Color.decode("#1f77b4"), 20));
@@ -44,9 +45,9 @@ public class BoidsSimulator implements Simulable
     public void next() {
         gui.reset();
         for (Boids boid : list_Boids) {
-            boid.separate(list_Boids, 40);
-            boid.align(list_Boids, 80);
-            boid.cohere(list_Boids, 60);
+            boid.separate(list_Boids, 100);
+            boid.align(list_Boids, 100);
+            boid.cohere(list_Boids, 400);
             boid.update();
             // Update the graphical element's position and orientation
             Draw_Boid(boid, Color.BLUE);

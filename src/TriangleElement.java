@@ -7,7 +7,6 @@ public class TriangleElement implements GraphicalElement {
     private int[] yPoints;
     private Color color;
     private int orientation;
-    // beug orientation 0 à droite pi à gauche.
 
     public TriangleElement(int[] xPoints, int[] yPoints, Color color, int orientation) {
         this.xPoints = xPoints;
