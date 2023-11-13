@@ -45,15 +45,20 @@ public void setOrientation(int orientation) {
     }
 
     private void update_position() {
+        // ça m'a l'air faux pour oreintation égal à pi/2 sin = 1 donc position augmente alors que quand on monte on baisse en y.
+        // manque un signe - à la ligne je pens epour y
     position[0] += (int) (vitesse[0] * Math.cos(orientation));
     position[1] += (int) (vitesse[1] * Math.sin(orientation));
 }
     private void update_vitesse(){
+        // ??????????? pk
         vitesse[0] += acceleration[0]/3;
         vitesse[1] += acceleration[1]/3;
 
     }
     private void update_acceleration(int[] force) {
+        // je pense que en tout cas dans un premier temps il ne faut pas passer par les accelerations
+        // et acceleration et la force n'ont pas les meme unité on peut pas les ajouter (la masse intervient ici)
         acceleration[0] += force[0];
         acceleration[1] += force[1];
     }
@@ -71,6 +76,7 @@ public void setOrientation(int orientation) {
 
     // Je suppose dans la question suivante que la liste des Boids ne contient pas le Boid actuel !
     public void separate(Boids[] list_boids, int distance_separation) {
+        // RULE 2 Keeping a small distance between boids
         int[] totalForce = new int[]{0, 0};
         for (Boids boid : list_boids) {
             if(boid.getPosition() != this.position) {
@@ -78,6 +84,7 @@ public void setOrientation(int orientation) {
                 if (dist > 0 && dist < distance_separation) {
                     int dx = position[0] - boid.position[0];
                     int dy = position[1] - boid.position[1];
+                    // à partir de la pk + pourquoi on modifie pas la vitesse
                     int factor = distance_separation / dist;
                     totalForce[0] += dx * factor;
                     totalForce[1] += dy * factor;
@@ -88,6 +95,7 @@ public void setOrientation(int orientation) {
     }
 
     public void align(Boids[] boids, int distance_alignement) {
+        // RULE 3 matching nearest neighboors velocity
         int[] totalvitesse = new int[]{0, 0};
         int count = 0;
         for (Boids boid : boids) {
@@ -103,16 +111,19 @@ public void setOrientation(int orientation) {
         if (count > 0) {
             totalvitesse[0] /= count;
             totalvitesse[1] /= count;
+            // il sort d'ou ce calcul ?
             int magnitude = (int)Math.sqrt(totalvitesse[0] * totalvitesse[0] + totalvitesse[1] * totalvitesse[1]);
             if (magnitude > 0) {
                 totalvitesse[0] /= magnitude;
                 totalvitesse[1] /= magnitude;
             }
+            // comprend pas pk on modifie l'accel
             update_acceleration(totalvitesse);
         }
     }
 
     public void cohere(Boids[] boids, int distance_essaim) {
+        // RULE 1 go to the center of mass
         int[] centre_masse = new int[]{0, 0};
         int count = 0;
         for (Boids boid : boids) {
@@ -130,6 +141,7 @@ public void setOrientation(int orientation) {
             centre_masse[1] /= count;
             int dx = centre_masse[0] - position[0];
             int dy = centre_masse[1] - position[1];
+            // même remarque
             int magnitude = (int)Math.sqrt(dx * dx + dy * dy);
             if (magnitude > 0) {
                 dx /= magnitude;

@@ -7,9 +7,10 @@ public class TestBoidsSimulator {
         Boids[] boids = new Boids[4];
 
         // Create 4 boids with different positions, velocities, and orientations
-        boids[0] = new Boids(100, 200, 2, 40, (int)Math.PI / 2);
-        boids[1] = new Boids(530, 300, -1, -20, 0);
-        boids[2] = new Boids(400, 650, -2, -8, 0 );
+        // 90 fais tourner vers la gauche, 270 vers la droite, sens trigo
+        boids[0] = new Boids(100, 200, 2, 40, 270);
+        boids[1] = new Boids(530, 300, -1, -20, 90);
+        boids[2] = new Boids(400, 350, -2, -8, 180 );
         boids[3] = new Boids(400, 400, 1, -12, 0);
 
         BoidsSimulator simulator = new BoidsSimulator(boids, gui);
