@@ -13,7 +13,7 @@ public class TestBoidsSimulator {
         boids[2] = new Boids(200, 350, -2, -1, 180 );
         boids[3] = new Boids(400, 400, 1, -2, 0);
         boids[4] = new Boids(200, 200, 1, -2, 0);
-        boids[5] = new Boids(400, 450, 1, -2, 0);
+        boids[5] = new Boids(400, 450, 1, -2, -90);
         boids[6] = new Boids(400, 500, 1, -2, 0);
         boids[7] = new Boids(180, 490, 1, -2, 0);
         boids[8] = new Boids(100, 100, 1, -2, 0);

@@ -9,8 +9,8 @@ public class BoidsSimulator implements Simulable
 
     private void set_Boid(Boids boid, Color couleur){
         // de base on pointe vers la droite c'est plus logique pour les calculs de trigo
-        int[] abs = {boid.getPosition()[0], boid.getPosition()[0] - 20, boid.getPosition()[0] - 20};
-        int[] ord = {boid.getPosition()[1], boid.getPosition()[1] - 10, boid.getPosition()[1] + 10};
+        int[] abs = {boid.getPosition()[0], boid.getPosition()[0] - 12, boid.getPosition()[0] - 12};
+        int[] ord = {boid.getPosition()[1], boid.getPosition()[1] - 5, boid.getPosition()[1] + 5};
         TriangleElement triangleElement= new TriangleElement(abs, ord, couleur, boid.getOrientation());
         gui.addGraphicalElement(triangleElement);
         //gui.addGraphicalElement(new Rectangle(20, 20, Color.decode("#1f77b4"), Color.decode("#1f77b4"), 20));
