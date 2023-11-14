@@ -56,8 +56,12 @@ public void setOrientation(int orientation) {
     }
     private void update_position() {
         // je pense beug ici j'ai essayé avec cos et sin j'ai pas eu de truc concluant
-    position[0] += (int) vitesse[0];
-    position[1] += (int) vitesse[1];
+    position[0] += vitesse[0];
+    position[1] += vitesse[1];
+    position[0] = (position[0] < 0) ? position[0] + 1600 : position[0];
+    position[0] = (position[0] > 1600) ? position[0] - 1600 : position[0];
+    position[1] = (position[1] < 0) ? position[1] + 1000 : position[1];
+    position[1] = (position[1] > 1000) ? position[1] - 1000 : position[1];
 }
     private void update_vitesse(int[] vitesse2){
         // update vitesse
@@ -81,6 +85,7 @@ public void setOrientation(int orientation) {
 
 
     public int distance(Boids other) {
+        // faudrait aussi regarder les voisions avec modulo
         int dx = other.position[0] - position[0];
         int dy = other.position[1] - position[1];
         return (int)Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
@@ -95,8 +100,8 @@ public void setOrientation(int orientation) {
             if(boid.getPosition() != this.position) {
                 int dist = distance(boid);
                 if (dist < distance_separation) {
-                    dx += position[0] - boid.position[0];
-                    dy += position[1] - boid.position[1];
+                    dx += (position[0] - boid.position[0])/12;
+                    dy += (position[1] - boid.position[1])/12;
                     // on les rajoute
                 }
             }
@@ -127,8 +132,8 @@ public void setOrientation(int orientation) {
             VectorPvj[0] -= vitesse[0];
             VectorPvj[1] -= vitesse[1];
             // on divise par 8
-            VectorPvj[0] /= 8;
-            VectorPvj[1] /= 8;
+            VectorPvj[0] /= 10;
+            VectorPvj[1] /= 10;
 
             update_vitesse(VectorPvj);
         }
@@ -155,8 +160,8 @@ public void setOrientation(int orientation) {
             VectorPcj[0] -= position[0];
             VectorPcj[1] -= position[1];
             // on divise par 100
-            VectorPcj[0] /= 100;
-            VectorPcj[1] /= 100;
+            VectorPcj[0] /= 60;
+            VectorPcj[1] /= 60;
 
             update_vitesse(VectorPcj);
         }
