@@ -6,34 +6,36 @@ import gui.Rectangle;
 
 import java.awt.Color;
 
+// Récupérer la taille de l'écran
+import java.awt.Dimension;
+import java.awt.Toolkit;
+// Nombre aléatoire
+import java.util.Random;
+
+
 public class TestImmiSimulator {
+    public static final double DIVISON_ECHELLE = 1.8;
+    public static final int NB_ETAT = 4;
     public static void main(String[] args) {
+        // Taille de l'écran divisée par 2
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int largeur = (int) (screenSize.getWidth() / DIVISON_ECHELLE / ImmiSimulator.TAILLE_CELLULE);
+        int hauteur = (int) (screenSize.getHeight() / DIVISON_ECHELLE / ImmiSimulator.TAILLE_CELLULE);
+
         // Création d'une instance de GUISimulator
-        GUISimulator gui = new GUISimulator(500, 500, Color.BLUE);
-        Immigration cell = new Immigration( 5, 6, 4);
-        cell.setBoolean_coord_Immi(3, 0, 0);
-        cell.setBoolean_coord_Immi(1, 2, 0);
-        cell.setBoolean_coord_Immi(1, 3, 0);
-        cell.setBoolean_coord_Immi(3, 0, 1);
-        cell.setBoolean_coord_Immi(1, 1, 1);
-        cell.setBoolean_coord_Immi(1, 2, 1);
-        cell.setBoolean_coord_Immi(1, 3, 1);
-        cell.setBoolean_coord_Immi(2, 4, 1);
-        cell.setBoolean_coord_Immi(1, 0, 2);
-        cell.setBoolean_coord_Immi(1, 1, 2);
-        cell.setBoolean_coord_Immi(3, 2, 2);
-        cell.setBoolean_coord_Immi(2, 3, 2);
-        cell.setBoolean_coord_Immi(2, 4, 2);
-        cell.setBoolean_coord_Immi(1, 1, 3);
-        cell.setBoolean_coord_Immi(2, 2, 3);
-        cell.setBoolean_coord_Immi(2, 3, 3);
-        cell.setBoolean_coord_Immi(2, 4, 3);
-        cell.setBoolean_coord_Immi(3, 1, 4);
-        cell.setBoolean_coord_Immi(2, 2, 4);
-        cell.setBoolean_coord_Immi(2, 3, 4);
-        cell.setBoolean_coord_Immi(1, 4, 4);
+        GUISimulator gui = new GUISimulator(largeur*ImmiSimulator.TAILLE_CELLULE, hauteur*ImmiSimulator.TAILLE_CELLULE, Color.BLUE);
+        Immigration cell = new Immigration(largeur, hauteur, NB_ETAT);
+
+        // Initialisation random ds cellules
+        Random random = new Random();
+        for (int i = 0; i < largeur; i++) {
+            for (int j = 0; j < hauteur; j++) {
+                cell.setBoolean_coord_Immi(random.nextInt(NB_ETAT), i, j);
+            }
+        }
 
         cell.InitConfigFirst();
+
         // Création d'une instance de CellSimulator
         ImmiSimulator simulator = new ImmiSimulator(cell, gui);
 
