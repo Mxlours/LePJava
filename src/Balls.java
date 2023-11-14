@@ -11,6 +11,7 @@ public class Balls {
     /**
      * je construis une copie de mon tableau de balles pour en créer une nouvelle instance, puis
      * je copie dans mon tableau de points initiaux.
+     *
      * @param balls notre tableau de coordonnées de balles
      */
     public Balls(Point[] balls) {
@@ -21,15 +22,17 @@ public class Balls {
         }
     }
 
-    public Point[] getBalls(){
+    public Point[] getBalls() {
         return balls;
     }
 
-    public Point[] getInitBalls(){
+    public Point[] getInitBalls() {
         return initBalls;
     }
+
     /**
      * translate les balles du montant indiqué sur chaque coordonnée
+     *
      * @param dx x coord
      * @param dy y coord
      */
@@ -50,6 +53,7 @@ public class Balls {
 
     /**
      * représentation de notre classe sous forme de string
+     *
      * @return notre chaine clean
      */
     @Override

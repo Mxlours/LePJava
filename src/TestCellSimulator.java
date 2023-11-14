@@ -7,7 +7,7 @@ public class TestCellSimulator {
     public static void main(String[] args) {
         // Création d'une instance de GUISimulator
         GUISimulator gui = new GUISimulator(500, 500, Color.GREEN);
-        Cell cell = new Cell( 50, 100);
+        Cell cell = new Cell(50, 100);
         cell.setBoolean_coord(1, 30, 30);
         cell.setBoolean_coord(1, 32, 31);
         cell.setBoolean_coord(1, 30, 32);

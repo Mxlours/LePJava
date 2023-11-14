@@ -1,4 +1,5 @@
 import java.awt.Color;
+
 import gui.GUISimulator;
 
 public class TestBoidsSimulator {
@@ -8,9 +9,9 @@ public class TestBoidsSimulator {
 
         // Create 4 boids with different positions, velocities, and orientations
         // 90 fais tourner vers la gauche, 270 vers la droite, sens trigo
-        boids[0] = new Boids(0, 0, 1, 2,  180);
+        boids[0] = new Boids(0, 0, 1, 2, 180);
         boids[1] = new Boids(530, 300, -1, -2, 90);
-        boids[2] = new Boids(200, 350, -2, -1, 180 );
+        boids[2] = new Boids(200, 350, -2, -1, 180);
         boids[3] = new Boids(400, 400, 1, -2, 0);
         boids[4] = new Boids(200, 200, 1, -2, 0);
         boids[5] = new Boids(400, 450, 1, -2, -90);

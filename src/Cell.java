@@ -1,4 +1,5 @@
 import java.awt.Point;
+
 public class Cell {
     protected Point[] cells;
 
@@ -14,17 +15,17 @@ public class Cell {
 
         this.size_x = size_x;
         this.size_y = size_y;
-        this.cells = new Point[size_x*size_y];
-        this.isAlive = new int[size_x*size_y];
-        this.alive_before = new int[size_x*size_y];
+        this.cells = new Point[size_x * size_y];
+        this.isAlive = new int[size_x * size_y];
+        this.alive_before = new int[size_x * size_y];
         if (cells.length != isAlive.length) {
             throw new IllegalArgumentException("les longueurs des deux tableaux doivent être identiques ! ");
         }
-        for (int i = 0; i <size_y; i++){
-            for (int j = 0; j < size_x; j++){
-                this.cells[size_x*i + j] = new Point(j, i);
-                this.isAlive[size_x*i + j] = 0;
-                this.alive_before[size_x*i + j]= 0;
+        for (int i = 0; i < size_y; i++) {
+            for (int j = 0; j < size_x; j++) {
+                this.cells[size_x * i + j] = new Point(j, i);
+                this.isAlive[size_x * i + j] = 0;
+                this.alive_before[size_x * i + j] = 0;
             }
         }
     }
@@ -37,21 +38,22 @@ public class Cell {
         return size_x;
     }
 
-    public void InitConfigFirst(){
-        this.first_config = new int[size_x*size_y];
-        for (int i = 0; i <size_y; i++){
-            for (int j = 0; j < size_x; j++){
-                this.first_config[size_x*i + j]= this.isAlive[size_x*i + j];
+    public void InitConfigFirst() {
+        this.first_config = new int[size_x * size_y];
+        for (int i = 0; i < size_y; i++) {
+            for (int j = 0; j < size_x; j++) {
+                this.first_config[size_x * i + j] = this.isAlive[size_x * i + j];
             }
         }
     }
-    public void Init_cells(){
-        this.isAlive = new int[size_x*size_y];
-        this.alive_before = new int[size_x*size_y];
-        for (int i = 0; i <size_y; i++){
-            for (int j = 0; j < size_x; j++){
-                this.isAlive[size_x*i + j]= this.first_config[size_x*i + j];
-                this.alive_before[size_x*i + j]= this.first_config[size_x*i + j];
+
+    public void Init_cells() {
+        this.isAlive = new int[size_x * size_y];
+        this.alive_before = new int[size_x * size_y];
+        for (int i = 0; i < size_y; i++) {
+            for (int j = 0; j < size_x; j++) {
+                this.isAlive[size_x * i + j] = this.first_config[size_x * i + j];
+                this.alive_before[size_x * i + j] = this.first_config[size_x * i + j];
             }
         }
     }
@@ -60,22 +62,24 @@ public class Cell {
         return cells[i];
     }
 
-    public int getlength(){
-        return size_y*size_x;
+    public int getlength() {
+        return size_y * size_x;
     }
+
     public int[] getIsAlive() {
         return isAlive;
     }
 
-    public int[] getAlive_before(){
+    public int[] getAlive_before() {
         return alive_before;
     }
 
-    public void setBoolean_coord(int bool, int coord_x, int coord_y){
-        isAlive[size_x*coord_y + coord_x] = bool;
-        alive_before[size_x*coord_y + coord_x] = bool;
+    public void setBoolean_coord(int bool, int coord_x, int coord_y) {
+        isAlive[size_x * coord_y + coord_x] = bool;
+        alive_before[size_x * coord_y + coord_x] = bool;
     }
-    public void setBoolean(int bool, int i){
+
+    public void setBoolean(int bool, int i) {
         isAlive[i] = bool;
     }
 
@@ -83,11 +87,11 @@ public class Cell {
     // au dessus je définie les fonctions basiques que devront utiliser l'uilisateur pour un cell
 
     // maintenant définissons une méthode qui va calculer le nombre de voisins
-    public void setnewEtapeConway(){
-        for (int i = 0; i < getlength(); i++){
-            if ( (alive_before[i] == 0) && (countAliveNeighbors(getCellule(i))==3)){
+    public void setnewEtapeConway() {
+        for (int i = 0; i < getlength(); i++) {
+            if ((alive_before[i] == 0) && (countAliveNeighbors(getCellule(i)) == 3)) {
                 setBoolean(1, i);
-            } else if ( !((alive_before[i] == 1) && ((countAliveNeighbors( getCellule(i)))==3 || (countAliveNeighbors( getCellule(i)))==2))){
+            } else if (!((alive_before[i] == 1) && ((countAliveNeighbors(getCellule(i))) == 3 || (countAliveNeighbors(getCellule(i))) == 2))) {
                 setBoolean(0, i);
             }
         }
@@ -96,12 +100,13 @@ public class Cell {
             this.alive_before[i] = isAlive[i];
         }
     }
+
     // TOUJOURS SE BASER SUR cells.alive_before, car commme on va modifier en temps réel notre tableau de booléens, on peut pas se baser dessus
     private int countAliveNeighbors(Point cellule) {
         int aliveNeighbors = 0;
 
         for (int i = 0; i < getlength(); i++) {
-            if (isNeighbor(cellule, cells[i]) && (alive_before[i]==1)) {
+            if (isNeighbor(cellule, cells[i]) && (alive_before[i] == 1)) {
                 aliveNeighbors++;
             }
         }

@@ -1,35 +1,36 @@
 import java.awt.*;
+
 import gui.*;
 import gui.Rectangle;
 
-public class BoidsSimulator implements Simulable
-{
+public class BoidsSimulator implements Simulable {
     private Boids[] list_Boids;
     private GUISimulator gui;
 
-    private void set_Boid(Boids boid, Color couleur){
+    private void set_Boid(Boids boid, Color couleur) {
         // de base on pointe vers la droite c'est plus logique pour les calculs de trigo
         int[] abs = {boid.getPosition()[0], boid.getPosition()[0] - 12, boid.getPosition()[0] - 12};
         int[] ord = {boid.getPosition()[1], boid.getPosition()[1] - 5, boid.getPosition()[1] + 5};
-        TriangleElement triangleElement= new TriangleElement(abs, ord, couleur, boid.getOrientation());
+        TriangleElement triangleElement = new TriangleElement(abs, ord, couleur, boid.getOrientation());
         gui.addGraphicalElement(triangleElement);
         //gui.addGraphicalElement(new Rectangle(20, 20, Color.decode("#1f77b4"), Color.decode("#1f77b4"), 20));
 
     }
 
-    private void Draw_Boid(Boids boid, Color couleur){
+    private void Draw_Boid(Boids boid, Color couleur) {
         //Première approche: à l'état initial, tous les boids sont initialisé en étant orienté vers le haut, on changera ensuite
         // la direction lors de l'éxécution.
         set_Boid(boid, couleur);
     }
 
-    public BoidsSimulator(Boids[] list_Boids, GUISimulator gui){
+    public BoidsSimulator(Boids[] list_Boids, GUISimulator gui) {
         this.list_Boids = list_Boids;
         this.gui = gui;
-        for ( Boids boid: list_Boids){
+        for (Boids boid : list_Boids) {
             Draw_Boid(boid, Color.BLUE);
         }
     }
+
     @Override
     public void restart() {
         gui.reset();
@@ -40,6 +41,7 @@ public class BoidsSimulator implements Simulable
             Draw_Boid(boid, Color.BLUE);
         }
     }
+
     @Override
     // bon finalement j'uilise le même tableau de boids pour tout les boids, psk j'ai fait le test en interne donc oklm
     public void next() {

@@ -15,6 +15,7 @@ public class Boids {
     private int orientation;
 
     private int init_orientation;
+
     public Boids(int x, int y, int vx, int vy, int orientation) {
         position = new int[]{x, y};
         init_position = new int[]{x, y};
@@ -24,18 +25,20 @@ public class Boids {
         acceleration = new int[]{0, 0};
         this.orientation = orientation;
     }
+
     public int getOrientation() {
-    return orientation;
-}
-    public void reset(){
+        return orientation;
+    }
+
+    public void reset() {
         this.position = new int[]{init_position[0], init_position[1]};
         this.vitesse = new int[]{init_vitesse[0], init_vitesse[1]};
         this.orientation = init_orientation;
     }
 
-public void setOrientation(int orientation) {
-    this.orientation = orientation;
-}
+    public void setOrientation(int orientation) {
+        this.orientation = orientation;
+    }
 
     public int[] getPosition() {
         return position;
@@ -49,26 +52,29 @@ public void setOrientation(int orientation) {
         return vitesse;
     }
 
-    private void update_orientation(){
+    private void update_orientation() {
         // je pense beug ici aussi
-        orientation = (int)Math.toDegrees(Math.atan2(vitesse[1], vitesse[0]));
+        orientation = (int) Math.toDegrees(Math.atan2(vitesse[1], vitesse[0]));
         orientation = (orientation < 0) ? (orientation + 360) : orientation;
     }
+
     private void update_position() {
         // je pense beug ici j'ai essayé avec cos et sin j'ai pas eu de truc concluant
-    position[0] += vitesse[0];
-    position[1] += vitesse[1];
-    position[0] = (position[0] < 0) ? position[0] + 1600 : position[0];
-    position[0] = (position[0] > 1600) ? position[0] - 1600 : position[0];
-    position[1] = (position[1] < 0) ? position[1] + 1000 : position[1];
-    position[1] = (position[1] > 1000) ? position[1] - 1000 : position[1];
-}
-    private void update_vitesse(int[] vitesse2){
+        position[0] += vitesse[0];
+        position[1] += vitesse[1];
+        position[0] = (position[0] < 0) ? position[0] + 1600 : position[0];
+        position[0] = (position[0] > 1600) ? position[0] - 1600 : position[0];
+        position[1] = (position[1] < 0) ? position[1] + 1000 : position[1];
+        position[1] = (position[1] > 1000) ? position[1] - 1000 : position[1];
+    }
+
+    private void update_vitesse(int[] vitesse2) {
         // update vitesse
         vitesse[0] += vitesse2[0];
         vitesse[1] += vitesse2[1];
 
     }
+
     private void update_acceleration(int[] force) {
         // A BANNIR POUR LE MOMENT NE PAS UTILISER
         // je pense que en tout cas dans un premier temps il ne faut pas passer par les accelerations
@@ -76,6 +82,7 @@ public void setOrientation(int orientation) {
         acceleration[0] += force[0];
         acceleration[1] += force[1];
     }
+
     public void update() {
         // changer l'orientation
         // changer position
@@ -88,7 +95,7 @@ public void setOrientation(int orientation) {
         // faudrait aussi regarder les voisions avec modulo
         int dx = other.position[0] - position[0];
         int dy = other.position[1] - position[1];
-        return (int)Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+        return (int) Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
     }
 
     public void separate(Boids[] list_boids, int distance_separation) {
@@ -97,11 +104,11 @@ public void setOrientation(int orientation) {
         int dx = 0;
         int dy = 0;
         for (Boids boid : list_boids) {
-            if(boid.getPosition() != this.position) {
+            if (boid.getPosition() != this.position) {
                 int dist = distance(boid);
                 if (dist < distance_separation) {
-                    dx += (position[0] - boid.position[0])/12;
-                    dy += (position[1] - boid.position[1])/12;
+                    dx += (position[0] - boid.position[0]) / 12;
+                    dy += (position[1] - boid.position[1]) / 12;
                     // on les rajoute
                 }
             }
@@ -116,7 +123,7 @@ public void setOrientation(int orientation) {
         int[] VectorPvj = new int[]{0, 0};
         int count = 0;
         for (Boids boid : boids) {
-            if(boid.getPosition() != this.position){
+            if (boid.getPosition() != this.position) {
                 int dist = distance(boid);
                 if (dist < distance_alignement) {
                     VectorPvj[0] += boid.vitesse[0];
@@ -144,7 +151,7 @@ public void setOrientation(int orientation) {
         int[] VectorPcj = new int[]{0, 0};
         int count = 0;
         for (Boids boid : boids) {
-            if(boid.getPosition() != this.position){
+            if (boid.getPosition() != this.position) {
                 int dist = distance(boid);
                 if (dist > 0 && dist < distance_essaim) {
                     VectorPcj[0] += boid.position[0];

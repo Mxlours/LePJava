@@ -6,11 +6,12 @@ import java.util.HashMap;
 import gui.Rectangle;
 
 import java.awt.Color;
+
 public class TestShellingSimulator {
     public static void main(String[] args) {
         // Création d'une instance de GUISimulator
         GUISimulator gui = new GUISimulator(500, 500, Color.BLUE);
-        Schelling cell = new Schelling( 5, 6, 4, 3);
+        Schelling cell = new Schelling(5, 6, 4, 3);
         cell.setBoolean_coord_Sche(3, 0, 0);
         cell.setBoolean_coord_Sche(1, 2, 0);
         cell.setBoolean_coord_Sche(1, 3, 0);

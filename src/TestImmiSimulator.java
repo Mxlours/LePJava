@@ -16,6 +16,7 @@ import java.util.Random;
 public class TestImmiSimulator {
     public static final double DIVISON_ECHELLE = 1.8;
     public static final int NB_ETAT = 4;
+
     public static void main(String[] args) {
         // Taille de l'écran divisée par 2
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -23,7 +24,7 @@ public class TestImmiSimulator {
         int hauteur = (int) (screenSize.getHeight() / DIVISON_ECHELLE / ImmiSimulator.TAILLE_CELLULE);
 
         // Création d'une instance de GUISimulator
-        GUISimulator gui = new GUISimulator(largeur*ImmiSimulator.TAILLE_CELLULE, hauteur*ImmiSimulator.TAILLE_CELLULE, Color.BLUE);
+        GUISimulator gui = new GUISimulator(largeur * ImmiSimulator.TAILLE_CELLULE, hauteur * ImmiSimulator.TAILLE_CELLULE, Color.BLUE);
         Immigration cell = new Immigration(largeur, hauteur, NB_ETAT);
 
         // Initialisation random ds cellules
