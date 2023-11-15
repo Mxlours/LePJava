@@ -1,3 +1,12 @@
+/*
+ * SchellingSimulator.java
+ *
+ * This class implements a simulator for the Schelling model. It uses a GUI to display the cells and their states.
+ * The cells are represented as a grid, and each cell can be in one of several states. The simulator allows for
+ * the progression of time, with cells changing their states based on certain rules. It also provides a restart
+ * functionality to reset the simulation to its initial state.
+ */
+
 import gui.*;
 import gui.Rectangle;
 
@@ -15,12 +24,21 @@ public class SchellingSimulator implements Simulable {
     private Schelling cells;
     private GUISimulator gui;
 
+    /**
+     * Creates a new SchellingSimulator instance.
+     *
+     * @param cells The Schelling object representing the cells and their states
+     * @param gui   The GUISimulator object used to display the cells
+     */
     public SchellingSimulator(Schelling cells, GUISimulator gui) {
         this.cells = cells;
         this.gui = gui;
         setGraphicCell();
     }
 
+    /**
+     * Sets the graphical representation of the cells on the GUI.
+     */
     public void setGraphicCell() {
 
         int pas_couleur = 255 / cells.getNb_etats();
@@ -41,6 +59,9 @@ public class SchellingSimulator implements Simulable {
         }
     }
 
+    /**
+     * Proceeds to the next step of the simulation.
+     */
     @Override
     public void next() {
         gui.reset();
@@ -49,6 +70,9 @@ public class SchellingSimulator implements Simulable {
         setGraphicCell();
     }
 
+    /**
+     * Restarts the simulation by resetting the cells and their states.
+     */
     @Override
     public void restart() {
         gui.reset();

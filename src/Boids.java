@@ -1,3 +1,12 @@
+/*
+ * Boids.java
+ *
+ * Summary:
+ * This class represents a boid object, which is a simulated bird-like creature that exhibits flocking behavior.
+ * It contains methods to update the boid's position and orientation, and to apply flocking rules such as separation, alignment, and cohesion.
+ * The class also includes methods to calculate the distance between boids and to reset the boid's state.
+ */
+
 import javax.management.ValueExp;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +29,16 @@ public class Boids {
     protected int taille_fen_X;
     protected int taille_fen_Y;
 
-
+    /**
+     * Constructs a new Boids object with the given initial position, velocity, orientation, and window size.
+     * @param x The initial x-coordinate of the boid's position
+     * @param y The initial y-coordinate of the boid's position
+     * @param vx The initial x-component of the boid's velocity
+     * @param vy The initial y-component of the boid's velocity
+     * @param orientation The initial orientation of the boid
+     * @param taille_x The width of the window
+     * @param taille_y The height of the window
+     */
     public Boids(int x, int y, int vx, int vy, int orientation, int taille_x, int taille_y) {
         position = new int[]{x, y};
         init_position = new int[]{x, y};
@@ -33,39 +51,67 @@ public class Boids {
         this.taille_fen_Y = taille_y;
     }
 
+    /**
+     * Returns the orientation of the boid.
+     * @return The orientation of the boid
+     */
     public int getOrientation() {
         return orientation;
     }
 
-
+    /**
+     * Resets the boid's position, velocity, and orientation to their initial values.
+     */
     public void reset() {
         this.position = new int[]{init_position[0], init_position[1]};
         this.vitesse = new int[]{init_vitesse[0], init_vitesse[1]};
         this.orientation = init_orientation;
     }
 
+    /**
+     * Sets the orientation of the boid.
+     * @param orientation The new orientation of the boid
+     */
     public void setOrientation(int orientation) {
         this.orientation = orientation;
     }
 
+    /**
+     * Returns the current position of the boid.
+     * @return The position of the boid as an array of x and y coordinates
+     */
     public int[] getPosition() {
         return position;
     }
 
+    /**
+     * Returns the current acceleration of the boid.
+     * @return The acceleration of the boid as an array of x and y components
+     */
     public int[] getAcceleration() {
         return acceleration;
     }
 
+    /**
+     * Returns the current velocity of the boid.
+     * @return The velocity of the boid as an array of x and y components
+     */
     public int[] getVitesse() {
         return vitesse;
     }
 
+    /**
+     * Updates the orientation of the boid based on its velocity.
+     */
     protected void update_orientation() {
         // je pense beug ici aussi
         orientation = (int) Math.toDegrees(Math.atan2(vitesse[1], vitesse[0]) + Math.PI/2);
         orientation = (orientation < 0) ? (orientation + 360) : orientation;
     }
 
+    /**
+     * Updates the position of the boid based on its velocity and window size.
+     */
     protected void update_position() {
         // je pense beug ici j'ai essayé avec cos et sin j'ai pas eu de truc concluant
         position[0] += vitesse[0];
@@ -76,6 +122,10 @@ public class Boids {
         position[1] = (position[1] > taille_fen_Y) ? position[1] - taille_fen_Y : position[1];
     }
 
+    /**
+     * Updates the velocity of the boid based on a given force.
+     * @param vitesse2 The force to be applied to the velocity of the boid
+     */
     protected void update_vitesse(int[] vitesse2) {
         // update vitesse
         vitesse[0] = (Math.abs(vitesse[0] + vitesse2[0]) > 30) ? vitesse[0] : (vitesse[0] + vitesse2[0]);
@@ -83,6 +133,10 @@ public class Boids {
 
     }
 
+    /**
+     * Updates the acceleration of the boid based on a given force.
+     * @param force The force to be applied to the acceleration of the boid
+     */
     protected void update_acceleration(int[] force) {
         // A BANNIR POUR LE MOMENT NE PAS UTILISER
         // je pense que en tout cas dans un premier temps il ne faut pas passer par les accelerations
@@ -90,7 +144,9 @@ public class Boids {
         acceleration[0] += force[0];
         acceleration[1] += force[1];
     }
-
+    /**
+     * Updates the orientation and position of the boid.
+     */
     public void update() {
         // changer l'orientation
         // changer position
@@ -98,7 +154,11 @@ public class Boids {
         update_position();
     }
 
-
+    /**
+     * Calculates the distance between the current boid and another boid.
+     * @param other The other boid to calculate the distance to
+     * @return The distance between the current boid and the other boid
+     */
     public int distance(Boids other) {
         // faudrait aussi regarder les voisions avec modulo
         // enft c'est pas ouf avec modulo
@@ -113,6 +173,11 @@ public class Boids {
         return (int) Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
     }
 
+    /**
+     * Applies the separation rule to the boid based on its neighbors.
+     * @param list_boids An array of boids representing the neighbors of the current boid
+     * @param distance_separation The distance threshold for separation
+     */
     public void separate(Boids[] list_boids, int distance_separation) {
         // RULE 2 Keeping a small distance between boids
         // ON PEUT CHANGER LES PARAM DE LA REGLE AVEC LA COULEUR
@@ -134,6 +199,11 @@ public class Boids {
         update_vitesse(VectorC);
     }
 
+    /**
+     * Applies the alignment rule to the boid based on its neighbors.
+     * @param boids An array of boids representing the neighbors of the current boid
+     * @param distance_alignement The distance threshold for alignment
+     */
     public void align(Boids[] boids, int distance_alignement) {
         // RULE 3 matching nearest neighboors velocity
         // ON PEUT CHANGER LES PARAM DE LA REGLE AVEC LA COULEUR
@@ -162,6 +232,12 @@ public class Boids {
             update_vitesse(VectorPvj);
         }
     }
+
+    /**
+     * Applies the cohesion rule to the boid based on its neighbors.
+     * @param boids An array of boids representing the neighbors of the current boid
+     * @param distance_essaim The distance threshold for cohesion
+     */
 
     public void cohere(Boids[] boids, int distance_essaim) {
         // RULE 1 go to the center of mass

@@ -1,3 +1,8 @@
+/**
+ * This class represents a balls simulator that implements the Simulable interface.
+ * It creates a GUI with graphical elements representing balls at initial positions.
+ * The simulator updates the positions of the balls in each iteration and handles restart functionality.
+ */
 import java.awt.*;
 
 import gui.*;
@@ -6,6 +11,12 @@ public class BallsSimulator implements Simulable {
     private Balls balls;
     private GUISimulator gui;
 
+    /**
+     * Constructs a BallsSimulator object with given initial positions and GUI.
+     * Initializes the balls and adds graphical elements to the GUI.
+     * @param initialPositions the initial positions of the balls
+     * @param gui the GUI to display the balls
+     */
     public BallsSimulator(Point[] initialPositions, GUISimulator gui) {
         balls = new Balls(initialPositions);
         this.gui = gui;
@@ -14,6 +25,11 @@ public class BallsSimulator implements Simulable {
         }
     }
 
+    /**
+     * Updates the positions of the balls in each iteration.
+     * If a ball reaches the edge of the GUI, its direction is reversed ( not done yet )
+     * Adds the updated graphical elements to the GUI.
+     */
     @Override
     public void next() {
         gui.reset();
@@ -33,11 +49,13 @@ public class BallsSimulator implements Simulable {
                 balls.translate(0, 10);
             }
             gui.addGraphicalElement(new Oval(ballPositions[i].x, ballPositions[i].y, Color.decode("#1f77b4"), Color.decode("#1f77b4"), 50, 50));
-
         }
-
     }
 
+    /**
+     * Restarts the simulator by reinitializing the balls and resetting the GUI.
+     * Adds the graphical elements representing the balls to the GUI.
+     */
     @Override
     public void restart() {
         balls.reInit();

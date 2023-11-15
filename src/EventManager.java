@@ -1,3 +1,6 @@
+/**
+ * This class manages a priority queue of events and executes them in chronological order.
+ */
 import java.util.PriorityQueue;
 public class EventManager{
     private long currentDate;
@@ -5,27 +8,39 @@ public class EventManager{
 
     public EventManager() {
         this.currentDate = 0;
-        // on identique ici que les dates les plus faibles sont prioritaires
         this.eventQueue = new PriorityQueue<>((event1, event2) -> Long.compare(event1.getDate(), event2.getDate()));
     }
 
+    /**
+     * Adds an event to the priority queue.
+     * @param event Event to be added
+     */
     public void addEvent(Event event) {
         eventQueue.add(event);
     }
 
+    /**
+     * Executes the next event in the queue that is scheduled to occur.
+     */
     public void next() {
         currentDate++;
         while (!eventQueue.isEmpty() && eventQueue.peek().getDate() <= currentDate) {
-            // c'est pour ça que ça renvoie d'abord PONG qui est ajouté après.
             Event event = eventQueue.poll();
             event.execute();
         }
     }
 
+    /**
+     * Checks if the event queue is empty.
+     * @return True if the queue is empty, false otherwise
+     */
     public boolean isFinished() {
         return eventQueue.isEmpty();
     }
 
+    /**
+     * Restarts the event manager by resetting the current date and clearing the event queue.
+     */
     public void restart() {
         currentDate = 0;
         eventQueue.clear();

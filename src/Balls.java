@@ -2,15 +2,15 @@ import java.awt.Point;
 import java.util.Arrays;
 
 /**
- * pleins de balleeeeeees
+ * classe représentant nos balles, sous forme de tableau
  */
 public class Balls {
     private Point[] balls;
     private Point[] initBalls;
 
     /**
-     * je construis une copie de mon tableau de balles pour en créer une nouvelle instance, puis
-     * je copie dans mon tableau de points initiaux.
+     * on construit une copie de notre tableau de balles pour en créer une nouvelle instance, puis
+     * on copie dans le tableau de points initiaux.
      *
      * @param balls notre tableau de coordonnées de balles
      */
@@ -21,11 +21,15 @@ public class Balls {
             this.initBalls[i] = new Point(balls[i]);
         }
     }
-
+    /**
+     * on retourne notre tableau de balles
+     */
     public Point[] getBalls() {
         return balls;
     }
-
+    /**
+     * on retourne notre tableau de balles initiales
+     */
     public Point[] getInitBalls() {
         return initBalls;
     }
@@ -43,7 +47,7 @@ public class Balls {
     }
 
     /**
-     * remet les balles comme à l'origine, d'où l'utilité de mes deux listes de balle
+     * remet les balles comme à l'origine, d'où l'utilité de mes deux tableaux de balles
      */
     public void reInit() {
         for (int i = 0; i < balls.length; i++) {

@@ -1,3 +1,9 @@
+/*
+ * Schelling.java
+ * This class extends the Cell class and implements the Schelling model of segregation.
+ * It initializes a dictionary mapping each point to a boolean value indicating whether it is free or not.
+ * It also provides methods to count the number of neighboring cells with a different state, set a new destination for a cell, and update the states of the cells.
+ */
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Random;
@@ -8,7 +14,14 @@ public class Schelling extends Cell {
     private int ndrDeVoisinDiffPourChanger;
     private HashMap<Point, Boolean> dictPointToLibre;
 
-    // si pour un point donné on renvoie true, ça veut dire que personne n'habites ici
+    /**
+     * Initializes a Schelling object with the given parameters.
+     *
+     * @param size_x                    the size of the grid in the x direction
+     * @param size_y                    the size of the grid in the y direction
+     * @param nb_etats                  the number of states
+     * @param ndrDeVoisinDiffPourChanger the number of different neighbors required to trigger a change
+     */
     public Schelling(int size_x, int size_y, int nb_etats, int ndrDeVoisinDiffPourChanger) {
         super(size_x, size_y);
         this.dictPointToLibre = new HashMap<>();
@@ -17,14 +30,22 @@ public class Schelling extends Cell {
         initDict(dictPointToLibre);
     }
 
+    /**
+     * Returns the dictionary of points.
+     *
+     * @return the dictionary of points
+     */
     public HashMap<Point, Boolean> getDict() {
         return dictPointToLibre;
     }
-
     public int getNb_etats() {
         return nb_etats;
     }
-
+    /**
+     * @brief Initializes the dictionary with all points set to free.
+     *
+     * @param dictPointToLibre The dictionary to initialize.
+     */
     public void initDict(HashMap<Point, Boolean> dictPointToLibre) {
         int sizeX = getSize_x();
         int sizeY = getSize_y();
@@ -35,10 +56,15 @@ public class Schelling extends Cell {
             }
         }
     }
-
+    /**
+     * @brief Counts the number of neighboring cells with a different state in the Schelling model.
+     *
+     * @param cellule The current cell.
+     * @param etat_cellule The state of the current cell.
+     * @return The number of neighboring cells with a different state.
+     */
     private int countOtherNeighborsSchelling(Point cellule, int etat_cellule) {
         if (etat_cellule == 0) {
-            // si c'est inhabité on fais rien
             return 0;
         }
         int voisinsupp = 0;
@@ -49,7 +75,9 @@ public class Schelling extends Cell {
         }
         return voisinsupp;
     }
-
+    /**
+     * @brief Updates the states of the cells based on the Schelling model.
+     */
     public void setnewEtapeSchelling() {
         for (int i = 0; i < getlength(); i++) {
             int etat_cellule = alive_before[i];
@@ -63,14 +91,20 @@ public class Schelling extends Cell {
             this.alive_before[i] = isAlive[i];
         }
     }
-
+    /**
+     * @brief Marks a cell as free in the Schelling model.
+     *
+     * @param Cellule The cell to mark as free.
+     */
     public void setFree(Point Cellule) {
-        // on libère la place
         this.dictPointToLibre.put(Cellule, true);
-        // mets la valeur 999 pour indiqué que y'a personne ici
         setBoolean(0, Cellule.y * getSize_x() + Cellule.x);
     }
-
+    /**
+     * @brief Sets a new destination for a cell in the Schelling model.
+     *
+     * @param Cellule The current cell.
+     */
     public void SetNewDestination(Point Cellule) {
         Random random = new Random();
         int valeur_random = random.nextInt(50);
@@ -79,9 +113,7 @@ public class Schelling extends Cell {
             if (this.dictPointToLibre.get(getCellule(i))) {
                 compteur++;
                 if(compteur == valeur_random){
-                    // si c'est true donc libre on mets la cellule ici
                     this.dictPointToLibre.put(getCellule(i), false);
-                    // faut mettre dans alive le fait qu'elle à changer de place
                     int etat_cellule = alive_before[Cellule.y * getSize_x() + Cellule.x];
                     setBoolean(etat_cellule, i);
                     break;
@@ -89,7 +121,9 @@ public class Schelling extends Cell {
             }
         }
     }
-
+    /**
+     * @brief Initializes the cells and dictionary based on the first configuration in the Schelling model.
+     */
     @Override
     public void Init_cells() {
         this.isAlive = new int[size_x * size_y];
@@ -106,7 +140,13 @@ public class Schelling extends Cell {
             }
         }
     }
-
+    /**
+     * @brief Sets the state of a cell at a given coordinate in the Schelling model.
+     *
+     * @param bool The boolean value to set.
+     * @param coord_x The x-coordinate of the cell.
+     * @param coord_y The y-coordinate of the cell.
+     */
     public void setBoolean_coord_Sche(int bool, int coord_x, int coord_y) {
         if (bool >= nb_etats + 1) {
             throw new IllegalArgumentException("l'état voulu n'existe pas (n-1 max)");

@@ -1,3 +1,7 @@
+/**
+ * This class implements the Simulable interface and simulates the behavior of a group of cells using Conway's Game of Life rules.
+ * The class takes in a Cell object and a GUISimulator object as parameters and uses them to display the state of the cells.
+ */
 import java.awt.*;
 
 import gui.*;
@@ -7,16 +11,28 @@ public class CellSimulator implements Simulable {
     private Cell cells;
     private GUISimulator gui;
 
+    /**
+     * Constructs a CellSimulator object with the given Cell and GUISimulator objects.
+     * @param cells the Cell object representing the group of cells
+     * @param gui the GUISimulator object used to display the state of the cells
+     */
     public CellSimulator(Cell cells, GUISimulator gui) {
         this.cells = cells;
         this.gui = gui;
         setGraphicCell();
     }
 
+    /**
+     * Returns the Cell object used in the simulation.
+     * @return the Cell object used in the simulation
+     */
     public Cell getCells() {
         return cells;
     }
 
+    /**
+     * Advances the simulation by one step, updating the state of the cells and redrawing them on the GUI.
+     */
     @Override
     public void next() {
         gui.reset();
@@ -25,6 +41,19 @@ public class CellSimulator implements Simulable {
         setGraphicCell();
     }
 
+    /**
+     * Restarts the simulation by resetting the state of the cells and redrawing them on the GUI.
+     */
+    @Override
+    public void restart() {
+        gui.reset();
+        cells.Init_cells();
+        setGraphicCell();
+    }
+
+    /**
+     * Draws the cells on the GUI using rectangles, with live cells represented by blue rectangles and dead cells represented by white rectangles.
+     */
     public void setGraphicCell() {
         for (int i = 0; i < cells.getSize_y(); i++) {
             for (int j = 0; j < cells.getSize_x(); j++) {
@@ -37,11 +66,4 @@ public class CellSimulator implements Simulable {
         }
     }
 
-    @Override
-    public void restart() {
-        gui.reset();
-        cells.Init_cells();
-        setGraphicCell();
-
-    }
 }

@@ -1,23 +1,57 @@
 import java.awt.*;
+/**
+ * SpecialBoids class extends the Boids class and represents a special type of boid.
+ * It includes additional properties such as name and color.
+ * The class provides methods for separating boids, aligning boids, and coherring boids based on their name and distance parameters.
+ */
 public class SpecialBoids extends Boids{
     private String name;
 
     private Color color;
+    /**
+     * Constructor for SpecialBoids class.
+     * Initializes the special boid with the given position, velocity, orientation, size, color, and name.
+     *
+     * @param x             the x-coordinate of the boid's position
+     * @param y             the y-coordinate of the boid's position
+     * @param vx            the x-component of the boid's velocity
+     * @param vy            the y-component of the boid's velocity
+     * @param orientation   the orientation of the boid
+     * @param taille_x      the x-size of the boid
+     * @param taille_y      the y-size of the boid
+     * @param color         the color of the boid
+     * @param name          the name of the boid
+     */
     public SpecialBoids(int x, int y, int vx, int vy, int orientation, int taille_x, int taille_y, Color color, String name){
         super(x, y, vx, vy,orientation, taille_x, taille_y);
         this.color = color;
         this.name = name;
     }
-
+    /**
+     * Returns the color of the special boid.
+     *
+     * @return The color of the special boid.
+     */
     public Color getColor() {
         return this.color;
     }
-
+    /**
+     * Returns the name of the special boid.
+     *
+     * @return The name of the special boid.
+     */
     public String getName() {
         return this.name;
     }
 
-
+    /**
+     * Separates the special boids from other boids based on the distance separation parameter.
+     * If the special boid is a "poisson", it adjusts its velocity based on the distance to other "poisson" boids.
+     * If the special boid is a "requin", it does not perform any separation.
+     *
+     * @param list_boids             an array of boids
+     * @param distance_separation    the distance threshold for separation
+     */
     public void separate(SpecialBoids[] list_boids, int distance_separation) {
         // RULE 2 Keeping a small distance between boids
         // ON PEUT CHANGER LES PARAM DE LA REGLE AVEC LA COULEUR
@@ -51,7 +85,14 @@ public class SpecialBoids extends Boids{
         }
 
     }
-
+    /**
+     * Aligns the special boids with other boids based on the distance alignment parameter.
+     * If the special boid is a "poisson", it adjusts its velocity to match the average velocity of nearby "poisson" boids.
+     * If the special boid is a "requin", it does not perform any alignment.
+     *
+     * @param boids                 an array of boids
+     * @param distance_alignement    the distance threshold for alignment
+     */
     public void align(SpecialBoids[] boids, int distance_alignement) {
         // RULE 3 matching nearest neighboors velocity
         // ON PEUT CHANGER LES PARAM DE LA REGLE AVEC LA COULEUR
@@ -85,7 +126,14 @@ public class SpecialBoids extends Boids{
         }
 
     }
-
+    /**
+     * Cohers the special boids towards the center of mass of nearby boids based on the distance cohesion parameter.
+     * If the special boid is a "poisson", it adjusts its velocity towards the center of mass of nearby "poisson" boids.
+     * If the special boid is a "requin", it adjusts its velocity towards the center of mass of nearby "poisson" boids.
+     *
+     * @param boids             an array of boids
+     * @param distance_essaim   the distance threshold for cohesion
+     */
     public void cohere(SpecialBoids[] boids, int distance_essaim) {
         // RULE 1 go to the center of mass
         // ON PEUT CHANGER LES PARAM DE LA REGLE AVEC LA COULEUR
