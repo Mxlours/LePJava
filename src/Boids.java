@@ -16,7 +16,10 @@ public class Boids {
 
     private int init_orientation;
 
-    public Boids(int x, int y, int vx, int vy, int orientation) {
+    private int taille_fen_X;
+    private int taille_fen_Y;
+
+    public Boids(int x, int y, int vx, int vy, int orientation, int taille_x, int taille_y) {
         position = new int[]{x, y};
         init_position = new int[]{x, y};
         init_vitesse = new int[]{vx, vy};
@@ -24,6 +27,8 @@ public class Boids {
         vitesse = new int[]{vx, vy};
         acceleration = new int[]{0, 0};
         this.orientation = orientation;
+        this.taille_fen_X = taille_x;
+        this.taille_fen_Y = taille_y;
     }
 
     public int getOrientation() {
@@ -54,7 +59,7 @@ public class Boids {
 
     private void update_orientation() {
         // je pense beug ici aussi
-        orientation = (int) Math.toDegrees(Math.atan2(vitesse[1], vitesse[0]));
+        orientation = (int) Math.toDegrees(Math.atan2(vitesse[1], vitesse[0]) + Math.PI/2);
         orientation = (orientation < 0) ? (orientation + 360) : orientation;
     }
 
@@ -62,16 +67,16 @@ public class Boids {
         // je pense beug ici j'ai essayé avec cos et sin j'ai pas eu de truc concluant
         position[0] += vitesse[0];
         position[1] += vitesse[1];
-        position[0] = (position[0] < 0) ? position[0] + 1600 : position[0];
-        position[0] = (position[0] > 1600) ? position[0] - 1600 : position[0];
-        position[1] = (position[1] < 0) ? position[1] + 1000 : position[1];
-        position[1] = (position[1] > 1000) ? position[1] - 1000 : position[1];
+        position[0] = (position[0] < 0) ? position[0] + taille_fen_X : position[0];
+        position[0] = (position[0] > taille_fen_X) ? position[0] - taille_fen_X : position[0];
+        position[1] = (position[1] < 0) ? position[1] + taille_fen_Y : position[1];
+        position[1] = (position[1] > taille_fen_Y) ? position[1] - taille_fen_Y : position[1];
     }
 
     private void update_vitesse(int[] vitesse2) {
         // update vitesse
-        vitesse[0] += vitesse2[0];
-        vitesse[1] += vitesse2[1];
+        vitesse[0] = (Math.abs(vitesse[0] + vitesse2[0]) > 30) ? vitesse[0] : (vitesse[0] + vitesse2[0]);
+        vitesse[1] = (Math.abs(vitesse[1] + vitesse2[1]) > 30) ? vitesse[1] : (vitesse[1] + vitesse2[1]);
 
     }
 
@@ -93,8 +98,15 @@ public class Boids {
 
     public int distance(Boids other) {
         // faudrait aussi regarder les voisions avec modulo
-        int dx = other.position[0] - position[0];
-        int dy = other.position[1] - position[1];
+        // enft c'est pas ouf avec modulo
+        // int sup_x = Math.max(position[0], other.position[0]);
+        // int inf_x = Math.min(position[0], other.position[0]);
+        // int sup_y = Math.max(position[1], other.position[1]);
+        // int inf_y = Math.min(position[1], other.position[1]);
+        // int dx = Math.min(sup_x - inf_x, Math.abs(sup_x - inf_x - taille_fen_X));
+        // int dy = Math.min(sup_y - inf_y, Math.abs(sup_y - inf_y - taille_fen_Y));
+        int dx = position[0] - other.position[0];
+        int dy = position[1] - other.position[1];
         return (int) Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
     }
 
@@ -107,8 +119,8 @@ public class Boids {
             if (boid.getPosition() != this.position) {
                 int dist = distance(boid);
                 if (dist < distance_separation) {
-                    dx += (position[0] - boid.position[0]) / 12;
-                    dy += (position[1] - boid.position[1]) / 12;
+                    dx += (position[0] - boid.position[0]) / 14;
+                    dy += (position[1] - boid.position[1]) / 14;
                     // on les rajoute
                 }
             }
@@ -139,8 +151,8 @@ public class Boids {
             VectorPvj[0] -= vitesse[0];
             VectorPvj[1] -= vitesse[1];
             // on divise par 8
-            VectorPvj[0] /= 10;
-            VectorPvj[1] /= 10;
+            VectorPvj[0] /= 8;
+            VectorPvj[1] /= 8;
 
             update_vitesse(VectorPvj);
         }

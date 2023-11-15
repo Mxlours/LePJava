@@ -47,9 +47,9 @@ public class BoidsSimulator implements Simulable {
     public void next() {
         gui.reset();
         for (Boids boid : list_Boids) {
-            boid.separate(list_Boids, 100);
-            boid.align(list_Boids, 100);
-            boid.cohere(list_Boids, 400);
+            boid.separate(list_Boids, 90);
+            boid.align(list_Boids, 90);
+            boid.cohere(list_Boids, 500);
             boid.update();
             // Update the graphical element's position and orientation
             Draw_Boid(boid, Color.BLUE);
