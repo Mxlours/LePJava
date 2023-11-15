@@ -4,41 +4,44 @@ import gui.*;
 import gui.Rectangle;
 
 public class BoidsSimulator implements Simulable {
-    private Boids[] list_Boids;
+    private SpecialBoids[] list_Boids;
     private GUISimulator gui;
 
-    private void set_Boid(Boids boid, Color couleur) {
+    private EventManager BoidsEvent;
+
+    private void Draw_Boid(SpecialBoids boid) {
         // de base on pointe vers la droite c'est plus logique pour les calculs de trigo
-        int[] abs = {boid.getPosition()[0], boid.getPosition()[0] - 12, boid.getPosition()[0] - 12};
-        int[] ord = {boid.getPosition()[1], boid.getPosition()[1] - 5, boid.getPosition()[1] + 5};
-        TriangleElement triangleElement = new TriangleElement(abs, ord, couleur, boid.getOrientation());
-        gui.addGraphicalElement(triangleElement);
+        if(boid.getColor().equals(Color.BLUE)){
+            int[] abs = {boid.getPosition()[0], boid.getPosition()[0] - 12, boid.getPosition()[0] - 12};
+            int[] ord = {boid.getPosition()[1], boid.getPosition()[1] - 5, boid.getPosition()[1] + 5};
+            TriangleElement triangleElement = new TriangleElement(abs, ord, boid.getColor(), boid.getOrientation());
+            gui.addGraphicalElement(triangleElement);
+        } else if(boid.getColor().equals(Color.RED)){
+            int[] abs = {boid.getPosition()[0], boid.getPosition()[0] - 30, boid.getPosition()[0] - 30};
+            int[] ord = {boid.getPosition()[1], boid.getPosition()[1] - 20, boid.getPosition()[1] + 20};
+            TriangleElement triangleElement = new TriangleElement(abs, ord, boid.getColor(), boid.getOrientation());
+            gui.addGraphicalElement(triangleElement);
+        }
         //gui.addGraphicalElement(new Rectangle(20, 20, Color.decode("#1f77b4"), Color.decode("#1f77b4"), 20));
-
     }
 
-    private void Draw_Boid(Boids boid, Color couleur) {
-        //Première approche: à l'état initial, tous les boids sont initialisé en étant orienté vers le haut, on changera ensuite
-        // la direction lors de l'éxécution.
-        set_Boid(boid, couleur);
-    }
-
-    public BoidsSimulator(Boids[] list_Boids, GUISimulator gui) {
+    public BoidsSimulator(SpecialBoids[] list_Boids, GUISimulator gui, EventManager BoidsEvent) {
         this.list_Boids = list_Boids;
         this.gui = gui;
-        for (Boids boid : list_Boids) {
-            Draw_Boid(boid, Color.BLUE);
+        this.BoidsEvent = BoidsEvent;
+        for (SpecialBoids boid : list_Boids) {
+            Draw_Boid(boid);
         }
     }
 
     @Override
     public void restart() {
         gui.reset();
-        for (Boids boid : list_Boids) {
+        for (SpecialBoids boid : list_Boids) {
             // Reset the position and orientation of each boid
             boid.reset(); // Implement the reset() method in your Boids class
             // Update the graphical element's position and orientation
-            Draw_Boid(boid, Color.BLUE);
+            Draw_Boid(boid);
         }
     }
 
@@ -46,13 +49,10 @@ public class BoidsSimulator implements Simulable {
     // bon finalement j'uilise le même tableau de boids pour tout les boids, psk j'ai fait le test en interne donc oklm
     public void next() {
         gui.reset();
-        for (Boids boid : list_Boids) {
-            boid.separate(list_Boids, 90);
-            boid.align(list_Boids, 90);
-            boid.cohere(list_Boids, 500);
-            boid.update();
-            // Update the graphical element's position and orientation
-            Draw_Boid(boid, Color.BLUE);
+        // AU MOINS UNE CLASSE A DESSINER A CHAQUE ITERATION
+        BoidsEvent.next();
+        for(SpecialBoids boid : list_Boids){
+            Draw_Boid(boid);
         }
     }
 }

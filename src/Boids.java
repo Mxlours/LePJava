@@ -1,23 +1,25 @@
 import javax.management.ValueExp;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.*;
 
 public class Boids {
-    private int[] position;
-    private int[] init_position;
-    private int[] init_vitesse;
+    protected int[] position;
+    protected int[] init_position;
+    protected int[] init_vitesse;
 
-    private int[] vitesse;
-    private int[] acceleration;
+    protected int[] vitesse;
+    protected int[] acceleration;
 
-    private int[] force;
+    protected int[] force;
 
-    private int orientation;
+    protected int orientation;
 
-    private int init_orientation;
+    protected int init_orientation;
 
-    private int taille_fen_X;
-    private int taille_fen_Y;
+    protected int taille_fen_X;
+    protected int taille_fen_Y;
+
 
     public Boids(int x, int y, int vx, int vy, int orientation, int taille_x, int taille_y) {
         position = new int[]{x, y};
@@ -34,6 +36,7 @@ public class Boids {
     public int getOrientation() {
         return orientation;
     }
+
 
     public void reset() {
         this.position = new int[]{init_position[0], init_position[1]};
@@ -57,13 +60,13 @@ public class Boids {
         return vitesse;
     }
 
-    private void update_orientation() {
+    protected void update_orientation() {
         // je pense beug ici aussi
         orientation = (int) Math.toDegrees(Math.atan2(vitesse[1], vitesse[0]) + Math.PI/2);
         orientation = (orientation < 0) ? (orientation + 360) : orientation;
     }
 
-    private void update_position() {
+    protected void update_position() {
         // je pense beug ici j'ai essayé avec cos et sin j'ai pas eu de truc concluant
         position[0] += vitesse[0];
         position[1] += vitesse[1];
@@ -73,14 +76,14 @@ public class Boids {
         position[1] = (position[1] > taille_fen_Y) ? position[1] - taille_fen_Y : position[1];
     }
 
-    private void update_vitesse(int[] vitesse2) {
+    protected void update_vitesse(int[] vitesse2) {
         // update vitesse
         vitesse[0] = (Math.abs(vitesse[0] + vitesse2[0]) > 30) ? vitesse[0] : (vitesse[0] + vitesse2[0]);
         vitesse[1] = (Math.abs(vitesse[1] + vitesse2[1]) > 30) ? vitesse[1] : (vitesse[1] + vitesse2[1]);
 
     }
 
-    private void update_acceleration(int[] force) {
+    protected void update_acceleration(int[] force) {
         // A BANNIR POUR LE MOMENT NE PAS UTILISER
         // je pense que en tout cas dans un premier temps il ne faut pas passer par les accelerations
         // et acceleration et la force n'ont pas les meme unité on peut pas les ajouter (la masse intervient ici)
@@ -112,6 +115,7 @@ public class Boids {
 
     public void separate(Boids[] list_boids, int distance_separation) {
         // RULE 2 Keeping a small distance between boids
+        // ON PEUT CHANGER LES PARAM DE LA REGLE AVEC LA COULEUR
         int[] VectorC = new int[]{0, 0};
         int dx = 0;
         int dy = 0;
@@ -132,6 +136,7 @@ public class Boids {
 
     public void align(Boids[] boids, int distance_alignement) {
         // RULE 3 matching nearest neighboors velocity
+        // ON PEUT CHANGER LES PARAM DE LA REGLE AVEC LA COULEUR
         int[] VectorPvj = new int[]{0, 0};
         int count = 0;
         for (Boids boid : boids) {
@@ -160,6 +165,7 @@ public class Boids {
 
     public void cohere(Boids[] boids, int distance_essaim) {
         // RULE 1 go to the center of mass
+        // ON PEUT CHANGER LES PARAM DE LA REGLE AVEC LA COULEUR
         int[] VectorPcj = new int[]{0, 0};
         int count = 0;
         for (Boids boid : boids) {
