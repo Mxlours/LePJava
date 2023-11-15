@@ -7,37 +7,36 @@ import gui.Rectangle;
 
 import java.awt.Color;
 
-public class TestShellingSimulator {
-    public static void main(String[] args) {
-        // Création d'une instance de GUISimulator
-        GUISimulator gui = new GUISimulator(500, 500, Color.BLUE);
-        Schelling cell = new Schelling(5, 6, 4, 3);
-        cell.setBoolean_coord_Sche(3, 0, 0);
-        cell.setBoolean_coord_Sche(1, 2, 0);
-        cell.setBoolean_coord_Sche(1, 3, 0);
-        cell.setBoolean_coord_Sche(3, 0, 1);
-        cell.setBoolean_coord_Sche(1, 1, 1);
-        cell.setBoolean_coord_Sche(1, 2, 1);
-        cell.setBoolean_coord_Sche(1, 3, 1);
-        cell.setBoolean_coord_Sche(2, 4, 1);
-        cell.setBoolean_coord_Sche(1, 0, 2);
-        cell.setBoolean_coord_Sche(1, 1, 2);
-        cell.setBoolean_coord_Sche(3, 2, 2);
-        cell.setBoolean_coord_Sche(2, 3, 2);
-        cell.setBoolean_coord_Sche(2, 4, 2);
-        cell.setBoolean_coord_Sche(1, 1, 3);
-        cell.setBoolean_coord_Sche(2, 2, 3);
-        cell.setBoolean_coord_Sche(2, 3, 3);
-        cell.setBoolean_coord_Sche(4, 4, 3);
-        cell.setBoolean_coord_Sche(3, 1, 4);
-        cell.setBoolean_coord_Sche(2, 2, 4);
-        cell.setBoolean_coord_Sche(2, 3, 4);
-        cell.setBoolean_coord_Sche(1, 4, 4);
-        cell.setBoolean_coord_Sche(4, 0, 5);
-        cell.setBoolean_coord_Sche(4, 1, 5);
-        cell.setBoolean_coord_Sche(3, 2, 5);
+// Récupérer la taille de l'écran
+import java.awt.Dimension;
+import java.awt.Toolkit;
+// Nombre aléatoire
+import java.util.Random;
 
-        cell.setBoolean_coord_Sche(4, 4, 5);
+
+public class TestShellingSimulator {
+    public static final double DIVISON_ECHELLE = 1.8;
+    public static final int NB_ETAT = 4;
+    public static final int NB_VOISIN_CHANGEMENT = 3;
+
+    public static void main(String[] args) {
+        // Taille de l'écran divisée par 2
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int largeur = (int) (screenSize.getWidth() / DIVISON_ECHELLE / SchellingSimulator.TAILLE_CELLULE);
+        int hauteur = (int) (screenSize.getHeight() / DIVISON_ECHELLE / SchellingSimulator.TAILLE_CELLULE);
+
+        // Création d'une instance de GUISimulator
+        GUISimulator gui = new GUISimulator(largeur * SchellingSimulator.TAILLE_CELLULE, hauteur * SchellingSimulator.TAILLE_CELLULE, Color.BLUE);
+        Schelling cell = new Schelling(largeur, hauteur, NB_ETAT, NB_VOISIN_CHANGEMENT);
+
+
+        // Initialisation random ds cellules
+        Random random = new Random();
+        for (int i = 0; i < largeur; i++) {
+            for (int j = 0; j < hauteur; j++) {
+                cell.setBoolean_coord_Sche(random.nextInt(NB_ETAT), i, j);
+            }
+        }
 
         cell.InitConfigFirst();
         // Création d'une instance de CellSimulator

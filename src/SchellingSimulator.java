@@ -6,6 +6,12 @@ import java.util.HashMap;
 
 public class SchellingSimulator implements Simulable {
 
+    // Déclaration d'un la taille des cellules
+    public static final int TAILLE_CELLULE = 50;
+    // Marges (demie cellule)
+    public static final int MARGES = TAILLE_CELLULE / 2; //Au mieux, si nombre pas pair faire marge visible
+
+
     private Schelling cells;
     private GUISimulator gui;
 
@@ -30,7 +36,7 @@ public class SchellingSimulator implements Simulable {
                     int couleur_rect = pas_couleur * (cells.getIsAlive()[cells.getSize_x() * i + j] - 1);
                     color = "#" + Integer.toHexString(255 - couleur_rect) + Integer.toHexString(255 - couleur_rect) + Integer.toHexString(255 - couleur_rect);
                 }
-                gui.addGraphicalElement(new Rectangle(200 + j * 50, 200 + i * 50, Color.decode(color), Color.decode(color), 50));
+                gui.addGraphicalElement(new Rectangle(MARGES + j * TAILLE_CELLULE, MARGES + i * TAILLE_CELLULE, Color.decode(color), Color.decode(color), TAILLE_CELLULE));
             }
         }
     }
