@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.util.HashMap;
+import java.util.Random;
 
 public class Schelling extends Cell {
 
@@ -71,14 +72,20 @@ public class Schelling extends Cell {
     }
 
     public void SetNewDestination(Point Cellule) {
+        Random random = new Random();
+        int valeur_random = random.nextInt(50);
+        int compteur = 0;
         for (int i = 0; i < getlength(); i++) {
             if (this.dictPointToLibre.get(getCellule(i))) {
-                // si c'est true donc libre on mets la cellule ici
-                this.dictPointToLibre.put(getCellule(i), false);
-                // faut mettre dans alive le fait qu'elle à changer de place
-                int etat_cellule = alive_before[Cellule.y * getSize_x() + Cellule.x];
-                setBoolean(etat_cellule, i);
-                break;
+                compteur++;
+                if(compteur == valeur_random){
+                    // si c'est true donc libre on mets la cellule ici
+                    this.dictPointToLibre.put(getCellule(i), false);
+                    // faut mettre dans alive le fait qu'elle à changer de place
+                    int etat_cellule = alive_before[Cellule.y * getSize_x() + Cellule.x];
+                    setBoolean(etat_cellule, i);
+                    break;
+                }
             }
         }
     }

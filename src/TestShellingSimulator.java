@@ -41,6 +41,7 @@ public class TestShellingSimulator {
         cell.InitConfigFirst();
         // Création d'une instance de CellSimulator
         SchellingSimulator simulator = new SchellingSimulator(cell, gui);
+        simulator.restart();
 
         // Ajout du simulateur à la fenêtre graphique
         gui.setSimulable(simulator);
