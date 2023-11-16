@@ -18,9 +18,6 @@ public class Boids {
     protected int[] init_vitesse;
 
     protected int[] vitesse;
-    protected int[] acceleration;
-
-    protected int[] force;
 
     protected int orientation;
 
@@ -45,7 +42,6 @@ public class Boids {
         init_vitesse = new int[]{vx, vy};
         init_orientation = orientation;
         vitesse = new int[]{vx, vy};
-        acceleration = new int[]{0, 0};
         this.orientation = orientation;
         this.taille_fen_X = taille_x;
         this.taille_fen_Y = taille_y;
@@ -84,13 +80,6 @@ public class Boids {
         return position;
     }
 
-    /**
-     * Returns the current acceleration of the boid.
-     * @return The acceleration of the boid as an array of x and y components
-     */
-    public int[] getAcceleration() {
-        return acceleration;
-    }
 
     /**
      * Returns the current velocity of the boid.
@@ -133,17 +122,6 @@ public class Boids {
 
     }
 
-    /**
-     * Updates the acceleration of the boid based on a given force.
-     * @param force The force to be applied to the acceleration of the boid
-     */
-    protected void update_acceleration(int[] force) {
-        // A BANNIR POUR LE MOMENT NE PAS UTILISER
-        // je pense que en tout cas dans un premier temps il ne faut pas passer par les accelerations
-        // et acceleration et la force n'ont pas les meme unité on peut pas les ajouter (la masse intervient ici)
-        acceleration[0] += force[0];
-        acceleration[1] += force[1];
-    }
     /**
      * Updates the orientation and position of the boid.
      */
