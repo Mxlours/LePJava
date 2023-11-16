@@ -26,7 +26,7 @@ public class TestImmiSimulator {
     public static final int NB_ETAT = 4;
 
     public static void main(String[] args) {
-        // Taille de l'écran divisée par 2
+        // Taille de l'écran divisée par DIVISON_ECHELLE
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int largeur = (int) (screenSize.getWidth() / DIVISON_ECHELLE / ImmiSimulator.TAILLE_CELLULE);
         int hauteur = (int) (screenSize.getHeight() / DIVISON_ECHELLE / ImmiSimulator.TAILLE_CELLULE);
