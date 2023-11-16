@@ -1,0 +1,18 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node23 [label="Simulable",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node23 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 [label="BallsSimulator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classBallsSimulator.html",tooltip="This class represents a balls simulator that implements the Simulable interface."];
+  Node23 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 [label="BoidsSimulator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classBoidsSimulator.html",tooltip="BoidsSimulator.java."];
+  Node23 -> Node26 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node26 [label="CellSimulator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCellSimulator.html",tooltip="This class implements the Simulable interface and simulates the behavior of a group of cells using Co..."];
+  Node23 -> Node27 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node27 [label="ImmiSimulator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classImmiSimulator.html",tooltip="This is a Java program that simulates an immigration cellular automaton."];
+  Node23 -> Node28 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node28 [label="SchellingSimulator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classSchellingSimulator.html",tooltip="SchellingSimulator.java."];
+}

@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['getalive_5fbefore_188',['getAlive_before',['../classCell.html#a60eef632597cd735bd89d0c3408916d8',1,'Cell']]],
+  ['getballs_189',['getBalls',['../classBalls.html#a1f59107dea613ac314799b3c23fb5369',1,'Balls']]],
+  ['getcells_190',['getCells',['../classCellSimulator.html#afeaf31fcd98cedb47c38f70afb424439',1,'CellSimulator']]],
+  ['getcellule_191',['getCellule',['../classCell.html#a8a5cb0edfdab4f6af6cf7384f75290b3',1,'Cell']]],
+  ['getcolor_192',['getColor',['../classSpecialBoids.html#af79ef9d1943f28f564acbd9b1f90fe0e',1,'SpecialBoids']]],
+  ['getdate_193',['getDate',['../classEvent.html#af411ac15c106c60a8acae3a40d180bc2',1,'Event']]],
+  ['getdict_194',['getDict',['../classSchelling.html#a2220a853fd567d56ad7096ec7e33e937',1,'Schelling']]],
+  ['getinitballs_195',['getInitBalls',['../classBalls.html#a2cb48d2d7d31c2616b7cf2c369bf15c7',1,'Balls']]],
+  ['getisalive_196',['getIsAlive',['../classCell.html#aa73269459c0d853b0c97667fd44783a6',1,'Cell']]],
+  ['getlength_197',['getlength',['../classCell.html#ab72b8e02e01266230fe6889b81909fd6',1,'Cell']]],
+  ['getname_198',['getName',['../classSpecialBoids.html#a56e541833bcf78f6f9f6162ee1514ced',1,'SpecialBoids']]],
+  ['getnb_5fetats_199',['getNb_etats',['../classImmigration.html#a8e34a490456e8d274da2616fad07c4d8',1,'Immigration.getNb_etats()'],['../classSchelling.html#a00efc4db2e8a70c315ef1e993044cef7',1,'Schelling.getNb_etats()']]],
+  ['getorientation_200',['getOrientation',['../classBoids.html#a4202278066eb41664de83218340d2eec',1,'Boids']]],
+  ['getposition_201',['getPosition',['../classBoids.html#a23eae13b91d72e903f4a15238d39adfc',1,'Boids']]],
+  ['getsize_5fx_202',['getSize_x',['../classCell.html#ac4f5672a9b1fde330bd5d680f7d4f7e6',1,'Cell']]],
+  ['getsize_5fy_203',['getSize_y',['../classCell.html#a9b17ed4364aa49b3534cc4724ba2db89',1,'Cell']]],
+  ['getvitesse_204',['getVitesse',['../classBoids.html#a922632b61c98c09b85df967ddad5efec',1,'Boids']]]
+];

@@ -2,7 +2,7 @@ import java.awt.Point;
 import java.util.Arrays;
 
 /**
- * classe représentant nos balles, sous forme de tableau
+ * This class represents our balls with point table
  */
 public class Balls {
     private Point[] balls;
