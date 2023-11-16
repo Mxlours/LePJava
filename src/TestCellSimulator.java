@@ -1,3 +1,9 @@
+/**
+
+This code initializes a graphical user interface (GUI) simulator and creates a cell object. The cell object is then modified by setting boolean coordinates. The initial configuration of the cell is set using the InitConfigFirst() method. Finally, a CellSimulator object is created and added to the GUI window.
+
+*/
+
 import gui.GUISimulator;
 import gui.Rectangle;
 

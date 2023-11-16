@@ -1,3 +1,11 @@
+/**
+ * TestBallsSimulator.java
+ *
+ * This program demonstrates the simulation of balls using a graphical user interface.
+ * It creates a GUISimulator object with a black background and initializes an array of Point objects representing the balls' positions.
+ * The BallsSimulator object is then created with the array of Point objects and the GUISimulator object as parameters.
+ * Finally, the GUISimulator's simulable is set to the BallsSimulator object.
+ */
 import gui.GUISimulator;
 import gui.Simulable;
 

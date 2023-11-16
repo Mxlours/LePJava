@@ -1,3 +1,13 @@
+/**
+ * This code is written in Java and is stored in the file TestBoidsSimulator.java.
+ * It creates a simulation of boids, which are virtual creatures that exhibit collective behavior.
+ * The simulation is displayed using a graphical user interface (GUI) provided by the GUISimulator library.
+ * The code defines the behavior and properties of the boids, such as their positions, velocities, orientations, and colors.
+ * It also creates an event manager to handle the simulation events and manages the interaction between the boids.
+ * The boids are represented by instances of the SpecialBoids class, which is a subclass of the Boids class.
+ * The simulation is started by creating a BoidsSimulator object and setting it as the simulable for the GUI.
+ */
+
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
