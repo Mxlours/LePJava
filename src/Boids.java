@@ -1,4 +1,10 @@
-/*
+
+
+import javax.management.ValueExp;
+import java.util.ArrayList;
+import java.util.List;
+import java.awt.*;
+/**
  * Boids.java
  *
  * Summary:
@@ -6,12 +12,6 @@
  * It contains methods to update the boid's position and orientation, and to apply flocking rules such as separation, alignment, and cohesion.
  * The class also includes methods to calculate the distance between boids and to reset the boid's state.
  */
-
-import javax.management.ValueExp;
-import java.util.ArrayList;
-import java.util.List;
-import java.awt.*;
-
 public class Boids {
     protected int[] position;
     protected int[] init_position;

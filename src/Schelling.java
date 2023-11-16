@@ -1,13 +1,13 @@
-/*
+
+import java.awt.*;
+import java.util.HashMap;
+import java.util.Random;
+/**
  * Schelling.java
  * This class extends the Cell class and implements the Schelling model of segregation.
  * It initializes a dictionary mapping each point to a boolean value indicating whether it is free or not.
  * It also provides methods to count the number of neighboring cells with a different state, set a new destination for a cell, and update the states of the cells.
  */
-import java.awt.*;
-import java.util.HashMap;
-import java.util.Random;
-
 public class Schelling extends Cell {
 
     private int nb_etats;

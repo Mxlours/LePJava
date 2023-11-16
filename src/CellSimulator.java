@@ -1,12 +1,12 @@
-/**
- * This class implements the Simulable interface and simulates the behavior of a group of cells using Conway's Game of Life rules.
- * The class takes in a Cell object and a GUISimulator object as parameters and uses them to display the state of the cells.
- */
+
 import java.awt.*;
 
 import gui.*;
 import gui.Rectangle;
-
+/**
+ * This class implements the Simulable interface and simulates the behavior of a group of cells using Conway's Game of Life rules.
+ * The class takes in a Cell object and a GUISimulator object as parameters and uses them to display the state of the cells.
+ */
 public class CellSimulator implements Simulable {
     private Cell cells;
     private GUISimulator gui;

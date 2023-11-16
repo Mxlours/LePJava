@@ -1,3 +1,9 @@
+
+
+import java.awt.*;
+
+import gui.*;
+import gui.Rectangle;
 /**
  * BoidsSimulator.java
  *
@@ -7,12 +13,6 @@
  *
  * The simulator uses the list of boids to draw each boid on the GUI. The restart() method resets the position and orientation of each boid, and updates the graphical elements accordingly. The next() method advances the simulation to the next iteration by updating the boids' positions and redrawing them on the GUI.
  */
-
-import java.awt.*;
-
-import gui.*;
-import gui.Rectangle;
-
 public class BoidsSimulator implements Simulable {
     private SpecialBoids[] list_Boids;
     private GUISimulator gui;

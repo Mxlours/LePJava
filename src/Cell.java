@@ -1,8 +1,8 @@
+
+import java.awt.Point;
 /**
  * This is a Java program that defines a Cell class. The Cell class represents a cell in a grid. It contains methods for initializing the grid, setting the state of cells, calculating the number of neighbors for each cell, and updating the state of cells based on the rules of Conway's Game of Life.
  */
-import java.awt.Point;
-
 public class Cell {
     protected Point[] cells;
 

@@ -1,9 +1,9 @@
+
+import java.awt.*;
 /**
  * This code defines a class called "Immigration" that represents a simulation of a cellular automaton with multiple states.
  * It extends the "Cell" class and provides methods to set the number of states, count alive neighbors, update the state of the cells, and set the state of a specific cell.
  */
-import java.awt.*;
-
 public class Immigration extends Cell {
     private int nb_etats;
 

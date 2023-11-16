@@ -8,7 +8,8 @@ import gui.Rectangle;
 import gui.Simulable;
 import gui.Text;
 
-
+/** test invader, the first given gui Implementation that print a little monster of the GUI application
+ */
 public class TestInvader {
     public static void main(String[] args) {
         // crée la fenêtre graphique dans laquelle dessiner

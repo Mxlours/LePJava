@@ -1,4 +1,11 @@
-/*
+
+
+import gui.*;
+import gui.Rectangle;
+
+import java.awt.*;
+import java.util.HashMap;
+/**
  * SchellingSimulator.java
  *
  * This class implements a simulator for the Schelling model. It uses a GUI to display the cells and their states.
@@ -6,13 +13,6 @@
  * the progression of time, with cells changing their states based on certain rules. It also provides a restart
  * functionality to reset the simulation to its initial state.
  */
-
-import gui.*;
-import gui.Rectangle;
-
-import java.awt.*;
-import java.util.HashMap;
-
 public class SchellingSimulator implements Simulable {
 
     // Déclaration d'un la taille des cellules

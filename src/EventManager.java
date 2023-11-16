@@ -1,7 +1,8 @@
+
+import java.util.PriorityQueue;
 /**
  * This class manages a priority queue of events and executes them in chronological order.
  */
-import java.util.PriorityQueue;
 public class EventManager{
     private long currentDate;
     private PriorityQueue<Event> eventQueue;

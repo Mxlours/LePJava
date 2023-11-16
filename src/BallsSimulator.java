@@ -1,12 +1,12 @@
+
+import java.awt.*;
+
+import gui.*;
 /**
  * This class represents a balls simulator that implements the Simulable interface.
  * It creates a GUI with graphical elements representing balls at initial positions.
  * The simulator updates the positions of the balls in each iteration and handles restart functionality.
  */
-import java.awt.*;
-
-import gui.*;
-
 public class BallsSimulator implements Simulable {
     private Balls balls;
     private GUISimulator gui;

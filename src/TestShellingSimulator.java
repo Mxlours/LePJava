@@ -1,10 +1,4 @@
-/*
- * Summary:
- * This code is a simulation of the Schelling model, which is a social simulation
- * model used to study segregation in a population. The code initializes a grid
- * of cells with random states, and then runs the simulation to observe the
- * dynamics of segregation.
- */
+
 
 import gui.GUISimulator;
 
@@ -21,7 +15,13 @@ import java.awt.Toolkit;
 // Nombre aléatoire
 import java.util.Random;
 
-
+/**
+ * Summary:
+ * This code is a simulation of the Schelling model, which is a social simulation
+ * model used to study segregation in a population. The code initializes a grid
+ * of cells with random states, and then runs the simulation to observe the
+ * dynamics of segregation.
+ */
 public class TestShellingSimulator {
     // Constants
     public static final double DIVISON_ECHELLE = 1.8;

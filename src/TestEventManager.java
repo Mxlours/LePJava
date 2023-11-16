@@ -1,4 +1,4 @@
-/*
+/**
  * TestEventManager.java
  *
  * This program demonstrates the usage of the EventManager class to manage message events.

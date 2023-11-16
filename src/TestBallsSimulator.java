@@ -1,3 +1,8 @@
+
+import gui.GUISimulator;
+import gui.Simulable;
+
+import java.awt.*;
 /**
  * TestBallsSimulator.java
  *
@@ -6,11 +11,6 @@
  * The BallsSimulator object is then created with the array of Point objects and the GUISimulator object as parameters.
  * Finally, the GUISimulator's simulable is set to the BallsSimulator object.
  */
-import gui.GUISimulator;
-import gui.Simulable;
-
-import java.awt.*;
-
 public class TestBallsSimulator {
     public static void main(String[] args) {
         GUISimulator gui = new GUISimulator(500, 500, Color.BLACK);

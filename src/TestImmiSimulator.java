@@ -1,11 +1,4 @@
-/**
- * This code is a Java program that demonstrates the simulation of an immigration process.
- * It uses the GUISimulator library to create a graphical user interface and displays the simulation on a blue background.
- * The simulation is based on the Immigration class, which represents a grid of cells with different states.
- * The initial state of the cells is randomly assigned using the Random class.
- * The ImmiSimulator class is responsible for running the simulation and updating the GUI accordingly.
- * The main method initializes the necessary variables, creates an instance of GUISimulator, and adds the ImmiSimulator to the GUI.
- */
+
 
 import gui.GUISimulator;
 
@@ -20,8 +13,14 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 // Nombre aléatoire
 import java.util.Random;
-
-
+/**
+ * This code is a Java program that demonstrates the simulation of an immigration process.
+ * It uses the GUISimulator library to create a graphical user interface and displays the simulation on a blue background.
+ * The simulation is based on the Immigration class, which represents a grid of cells with different states.
+ * The initial state of the cells is randomly assigned using the Random class.
+ * The ImmiSimulator class is responsible for running the simulation and updating the GUI accordingly.
+ * The main method initializes the necessary variables, creates an instance of GUISimulator, and adds the ImmiSimulator to the GUI.
+ */
 public class TestImmiSimulator {
     public static final double DIVISON_ECHELLE = 1.8;
     public static final int NB_ETAT = 4;

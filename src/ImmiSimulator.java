@@ -1,14 +1,14 @@
+
+import gui.*;
+import gui.Rectangle;
+
+import java.awt.*;
 /**
  * This is a Java program that simulates an immigration cellular automaton.
  * The program uses a GUI to display the cells and their states.
  * It includes methods to set the graphic representation of the cells,
  * advance to the next step of the simulation, and restart the simulation.
  */
-import gui.*;
-import gui.Rectangle;
-
-import java.awt.*;
-
 public class ImmiSimulator implements Simulable {
 
     public static final int TAILLE_CELLULE = 30;

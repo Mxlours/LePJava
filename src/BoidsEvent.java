@@ -1,11 +1,11 @@
+
+import gui.GUISimulator;
+import java.awt.*;
 /**
  * BoidsEvent class represents an event that updates the behavior of a group of boids.
  * It contains methods to separate, align, and cohere the boids, as well as update their positions.
  * The class also handles the scheduling of new events based on the type of boids.
  */
-import gui.GUISimulator;
-import java.awt.*;
-
 public class BoidsEvent extends Event {
     private SpecialBoids[] BoidsAtraiter;
     private SpecialBoids[] allBoids;
